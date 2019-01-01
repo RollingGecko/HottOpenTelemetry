@@ -12,14 +12,10 @@ HottModule::~HottModule()
 {
 }
 
-void HottModule::createMessage()
-{
 
-}
-
-uint8* HottModule::getMessage()
+uint8_t* HottModule::getMessage()
 {
-	return &serialMessage
+	return serialMessage;
 }
 
 void GamModule::init_gam_msg()
@@ -31,7 +27,7 @@ void GamModule::init_gam_msg()
 	hott_gam_msg->stop_byte = 0x7d;
 }
 
-void GamModule::set_cellVotlage(unit8_t cell, float voltage)
+void GamModule::set_cellVotlage(uint8_t cell, float voltage)
 {
 		hott_gam_msg->cell[cell] = byte(round(voltage / 0.02));
 	}
@@ -55,12 +51,12 @@ byte GamModule::set_temp(int temp)
 		tempOut = 235;
 	else
 		tempOut = temp + 20;
-	return tempOut
+	return tempOut;
 }
 
 void GamModule::set_temperature1(int temp)
 {
-	hott_gam_msg->temperature1 = set_temp(temp)
+	hott_gam_msg->temperature1 = set_temp(temp);
 }
 
 void GamModule::set_temperature2(int temp)
@@ -94,7 +90,7 @@ void GamModule::set_climbrateL(float climbrateL)
 
 void GamModule::set_climbrate3s(uint16_t climbrate3s)
 {
-	hott_gam_msg -> climbrate3s = climbrate3s + 120
+	hott_gam_msg->climbrate3s = climbrate3s + 120;
 }
 
 void GamModule::set_current(float current)
@@ -134,7 +130,7 @@ void GamModule::set_rpm2(uint16_t rpm)
 
 void GamModule::set_pressure_in_bar(float pressure)
 {
-	hott_gam_msg -> pressure_in_bar = byte(pressure / 0.1)
+	hott_gam_msg->pressure_in_bar = byte(pressure / 0.1);
 }
 
 void GamModule::createMessage()
@@ -160,5 +156,10 @@ void GamModule::createMessage()
 	set_speed(210);
 	set_minCellVoltage(3.7);
 	set_minCellVoltageNumber(3);
+}
+
+int GamModule::getMessageSize()
+{
+
 }
 
