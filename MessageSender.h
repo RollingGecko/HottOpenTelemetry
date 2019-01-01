@@ -5,6 +5,7 @@ HottOpenTelemetry
 
 #include "Arduino.h"
 #include <EEPROM.h>
+#include "HottModule.h"
 
 // Alarm
 #define ALARME_TENSION_SEUIL 0x10
@@ -58,12 +59,12 @@ class HottMessage {
 
 private:
 
-	Stream& HottSerialPort;
-	GamModule& gamModule;
+	Stream & HottSerialPort;
+	GamModule & gamModule;
 
 	  // HOTT focntions
 
-	  void _hott_send_text_msg();
+	  //void _hott_send_text_msg();
 	  char * _hott_invert_all_chars(char *str);
 	  char * _hott_invert_chars(char *str, int cnt);
 	  void send(uint8_t* serialBuffer, int lenght);

@@ -11,7 +11,7 @@
 // Baudrate UART
 #define SERIAL_COM_SPEED    19200
 
-SoftwareSerial HottSerial(9, 10);
+SoftwareSerial HottSerial(10, 11);
 GamModule Hott_GamModule;
 HottMessage MessageSender(HottSerial);
 
