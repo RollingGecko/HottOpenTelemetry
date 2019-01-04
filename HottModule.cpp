@@ -160,6 +160,6 @@ void GamModule::createMessage()
 
 int GamModule::getMessageSize()
 {
-
+	return sizeof(HOTT_GAM_MSG);
 }
 

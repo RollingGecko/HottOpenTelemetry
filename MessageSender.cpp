@@ -152,20 +152,19 @@ static uint16_t pressure_sensor_min = 0;    // Min pressure sensor by default (t
 static uint16_t pressure_sensor_max = 2000; // Max pressure sensor by default (this value can be changed by the Radio OSD)
 
 
-HottMessage::HottMessage(){
+HottMessage::HottMessage():HottSerialPort(NULL), gamModule(NULL){
 }
 
-HottMessage::HottMessage(Stream & serial)
+HottMessage::HottMessage(Stream *serial):HottSerialPort(serial), gamModule(NULL)
 {
-	setHottSerialPort(serial);
 }
 
-void HottMessage::setHottSerialPort(Stream & serial)
+void HottMessage::setHottSerialPort(Stream *serial)
 {
 	HottSerialPort = serial;
 }
 
-void HottMessage::setGamModule(GamModule & module)
+void HottMessage::setGamModule(GamModule *module)
 {
 	gamModule = module;
 }
@@ -177,17 +176,17 @@ void HottMessage::init(){
 
 
 void HottMessage::sendMessage(){ 
-  
+	
   // STARTING MAIN PROGRAM LIPOMETRE
   static byte page_settings = 1;//numéro de la page de settings à afficher
+  
+  if(HottSerialPort->available() >= 2) {
     
-  if(HottSerialPort.available() >= 2) {
-    
-    uint8_t octet1 = HottSerialPort.read();
+    uint8_t octet1 = HottSerialPort->read();
     switch (octet1) {
     case HOTT_BINARY_MODE_REQUEST_ID:
       { 
-        uint8_t  octet2 = HottSerialPort.read();
+        uint8_t  octet2 = HottSerialPort->read();
         
         // Demande RX Module =	$80 $XX
         switch (octet2) {
@@ -216,8 +215,8 @@ void HottMessage::sendMessage(){
         
         case HOTT_TELEMETRY_GAM_SENSOR_ID: //0x8D
           {
-			gamModule.createMessage();
-            send(gamModule.getMessage(), gamModule.getMessageSize());
+			gamModule->createMessage();
+            send(gamModule->getMessage(), gamModule->getMessageSize());
             break;
           } //end case GAM*/
         } //end case octet 2
@@ -809,16 +808,16 @@ void HottMessage::send(uint8_t * serialBuffer, int lenght)
 	delay(5);
 	for (int i = 0; i < lenght - 1; i++) {
 		sum = sum + serialBuffer[i];
-		HottSerialPort.write(serialBuffer[i]);
+		HottSerialPort->write(serialBuffer[i]);
 		delayMicroseconds(HOTTV4_TX_DELAY);
 		//delay(TPS_EM);
-		HottSerialPort.read(); // A cause du rebouclage TX <--> RX Lecture de l'octet émis 
+		HottSerialPort->read(); // 
 	}
 	//Emision du checksum
-	HottSerialPort.write(sum);
+	HottSerialPort->write(sum);
 	//delay(TPS_EM);
 	delayMicroseconds(HOTTV4_TX_DELAY);
-	HottSerialPort.read(); // A cause du rebouclage TX <--> RX Lecture de l'octet émis 
+	HottSerialPort->read(); // A cause du rebouclage TX <--> RX Lecture de l'octet émis 
 }
 
 

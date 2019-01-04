@@ -59,8 +59,8 @@ class HottMessage {
 
 private:
 
-	Stream & HottSerialPort;
-	GamModule & gamModule;
+	Stream *HottSerialPort;
+	GamModule *gamModule;
 
 	  // HOTT focntions
 
@@ -75,9 +75,9 @@ private:
 
 public:
   HottMessage();
-  HottMessage(Stream& serial);
-  void setHottSerialPort(Stream& serial);
-  void setGamModule(GamModule& module);
+  HottMessage(Stream *serial);
+  void setHottSerialPort(Stream *serial);
+  void setGamModule(GamModule *module);
   void init();
   void sendMessage();
 //  void debug();
