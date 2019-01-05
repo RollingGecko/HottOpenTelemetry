@@ -33,7 +33,7 @@ void GamModule::set_alarminvers1(byte alarm)
 	hott_gam_msg->alarm_invers1 = alarm;
 }
 
-void GamModule::init_gam_msg()
+void GamModule::init_msg()
 {
 	memset(hott_gam_msg, 0, sizeof(struct HOTT_GAM_MSG));
 	hott_gam_msg->start_byte = 0x7c;
@@ -148,12 +148,16 @@ void GamModule::set_pressure_in_bar(float pressure)
 	hott_gam_msg->pressure_in_bar = byte(pressure / 0.1);
 }
 
-void GamModule::createMessage()
+GamModule::GamModule()
 {
-	init_gam_msg();
+	init_msg();
+}
+
+void GamModule::createBinMessage()
+{
+	//init_msg();
 	if (dummyMessage)
 	{
-		
 		set_Alert(ALARM_OFF);
 		//set_alarminvers1(3);
 		for (int i = 0; i <= 5; i++)
