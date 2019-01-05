@@ -23,6 +23,7 @@ void setup() {
 	//Serial.println("Setup");
 	HottSerial.begin(SERIAL_COM_SPEED);
 	Hott_GamModule = new GamModule();
+	Hott_GamModule->setDummyMessage(true);
 	MessageSender = new HottMessage(&HottSerial);
 	MessageSender->setGamModule(Hott_GamModule);
 

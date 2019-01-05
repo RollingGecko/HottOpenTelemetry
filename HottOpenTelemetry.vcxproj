@@ -88,11 +88,13 @@
   <ItemGroup>
     <ClInclude Include="HottModule.h" />
     <ClInclude Include="MessageSender.h" />
+    <ClInclude Include="Sensor.h" />
     <ClInclude Include="__vm\.HottOpenTelemetry.vsarduino.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="HottModule.cpp" />
     <ClCompile Include="MessageSender.cpp" />
+    <ClCompile Include="Sensor.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

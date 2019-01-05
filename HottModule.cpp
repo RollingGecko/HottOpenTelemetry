@@ -18,6 +18,21 @@ uint8_t* HottModule::getMessage()
 	return serialMessage;
 }
 
+void HottModule::setDummyMessage(bool onOff)
+{
+	dummyMessage = onOff;
+}
+
+void GamModule::set_Alert(byte alarm)
+{
+	hott_gam_msg->warning_beeps = alarm;
+}
+
+void GamModule::set_alarminvers1(byte alarm)
+{
+	hott_gam_msg->alarm_invers1 = alarm;
+}
+
 void GamModule::init_gam_msg()
 {
 	memset(hott_gam_msg, 0, sizeof(struct HOTT_GAM_MSG));
@@ -136,26 +151,35 @@ void GamModule::set_pressure_in_bar(float pressure)
 void GamModule::createMessage()
 {
 	init_gam_msg();
-	for (int i=0 ; i<=5; i++)
+	if (dummyMessage)
 	{
-		set_cellVotlage(i, 4.2);
+		
+		set_Alert(ALARM_OFF);
+		//set_alarminvers1(3);
+		for (int i = 0; i <= 5; i++)
+		{
+			set_cellVotlage(i, 4.2);
+		}
+		set_Battery1(8.4);
+		set_Battery2(8.4);
+		set_temperature1(50);
+		set_temperature2(100);
+		set_fuelPercent(80);
+		set_fuelMl(1111);
+		set_rpm2(30000);
+		set_altitude(121);
+		set_climbrateL(1.1);
+		set_climbrate3s(200);
+		set_current(45);
+		set_mainVoltage(11.6);
+		set_battCap(1210);
+		set_speed(210);
+		set_minCellVoltage(3.7);
+		set_minCellVoltageNumber(3);
 	}
-	set_Battery1(8.4);
-	set_Battery2(8.4);
-	set_temperature1(50);
-	set_temperature2(100);
-	set_fuelPercent(80);
-	set_fuelMl(1111);
-	set_rpm2(30000);
-	set_altitude(121);
-	set_climbrateL(1.1);
-	set_climbrate3s(200);
-	set_current(45);
-	set_mainVoltage(11.6);
-	set_battCap(1210);
-	set_speed(210);
-	set_minCellVoltage(3.7);
-	set_minCellVoltageNumber(3);
+	else
+	{
+	}
 }
 
 int GamModule::getMessageSize()
