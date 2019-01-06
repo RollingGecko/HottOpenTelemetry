@@ -1,6 +1,8 @@
 /*
 HottOpenTelemetry
  */
+#ifndef MessageSender_h__
+#define MessageSender_h__
 
 
 #include "Arduino.h"
@@ -69,6 +71,7 @@ private:
 	  char * _hott_invert_chars(char *str, int cnt);
 	  void send(uint8_t* serialBuffer, int lenght);
 	  void _hott_invert_ligne(int ligne);
+	  byte alarmByte = 0;
    
   // debug
  // int freeRAM();
@@ -77,6 +80,7 @@ public:
   HottMessage();
   HottMessage(Stream *serial);
   void setHottSerialPort(Stream *serial);
+  void set_Alarm(byte alarm);
   void setGamModule(GamModule *module);
   void init();
   void sendMessage();
@@ -88,3 +92,4 @@ public:
 
 
 
+#endif // MessageSender_h__

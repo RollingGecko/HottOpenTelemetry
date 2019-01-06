@@ -23,11 +23,6 @@ void HottModule::setDummyMessage(bool onOff)
 	dummyMessage = onOff;
 }
 
-void GamModule::set_Alert(byte alarm)
-{
-	hott_gam_msg->warning_beeps = alarm;
-}
-
 void GamModule::set_alarminvers1(byte alarm)
 {
 	hott_gam_msg->alarm_invers1 = alarm;
@@ -225,13 +220,18 @@ GamModule::GamModule()
 	init_BinMsg();
 }
 
+void GamModule::setAlarmHandler(HottMessage * handler)
+{
+	AlertHandler = handler;
+}
+
 void GamModule::createMessage()
 {
 	//init_msg();
 	if (dummyMessage)
 	{
 		
-		set_Alert(ALARM_OFF);
+		AlertHandler->set_Alarm(ALARM_OFF);
 		if(millis()- timeLastMessageSend >=1000)
 		{
 			if (!invAlert) {

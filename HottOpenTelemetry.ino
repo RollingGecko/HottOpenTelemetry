@@ -13,19 +13,21 @@
 #define SERIAL_COM_SPEED    19200
 
 SoftwareSerial HottSerial(10, 11);
+HottMessage *MessageHandler;// = new HottMessage(HottSerial);
 GamModule *Hott_GamModule;// = new GamModule();
-HottMessage *MessageSender;// = new HottMessage(HottSerial);
+
 
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	//Serial.begin(115200);
-	//Serial.println("Setup");
+
 	HottSerial.begin(SERIAL_COM_SPEED);
 	Hott_GamModule = new GamModule();
 	Hott_GamModule->setDummyMessage(true);
-	MessageSender = new HottMessage(&HottSerial);
-	MessageSender->setGamModule(Hott_GamModule);
+	MessageHandler = new HottMessage(&HottSerial);
+	Hott_GamModule->setAlarmHandler(MessageHandler);
+	MessageHandler->setGamModule(Hott_GamModule);
+	
 
 	
 }
@@ -33,6 +35,6 @@ void setup() {
 // the loop function runs over and over again until power down or reset
 void loop() {
 	//Serial.println("loop");
-	MessageSender->sendMessage();
+	MessageHandler->sendMessage();
 	
 }

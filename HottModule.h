@@ -1,6 +1,9 @@
 #pragma once
+#ifndef HottModule_h__
+#define HottModule_h__
 
 #include "Arduino.h"
+#include "MessageSender.h"
 #include "Sensor.h"
 #include "ModuleDefines.h"
 
@@ -108,11 +111,12 @@ class GamModule : public HottModule
 {
 private:
 	struct HOTT_GAM_MSG       *hott_gam_msg = (struct HOTT_GAM_MSG *)&serialBinMessage[0];
+	HottMessage* AlertHandler;
 	long timeLastMessageSend = 0;
 	bool invAlert = false;
 
 protected:
-	void set_Alert(byte alarm);
+
 	void set_alarminvers1(byte alarm);
 	void set_alarminvers2(byte alarm);
 	void set_cellVotlage(uint8_t cell, float voltage);
@@ -152,7 +156,12 @@ protected:
 
 public:
 	GamModule();
+	virtual void setAlarmHandler(HottMessage* handler);
 	virtual void createMessage() override;
 	virtual int getBinMessageSize() override;
 	virtual void init_BinMsg() override;
 };
+
+
+
+#endif // HottModule_h__

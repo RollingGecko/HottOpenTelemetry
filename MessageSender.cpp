@@ -164,6 +164,12 @@ void HottMessage::setHottSerialPort(Stream *serial)
 	HottSerialPort = serial;
 }
 
+
+void HottMessage::set_Alarm(byte alarm)
+{
+	alarmByte = alarm;
+}
+
 void HottMessage::setGamModule(GamModule *module)
 {
 	gamModule = module;
@@ -807,6 +813,10 @@ void HottMessage::send(uint8_t * serialBuffer, int lenght)
 	uint8_t sum = 0;
 	delay(5);
 	for (int i = 0; i < lenght - 1; i++) {
+		if (i=2)
+		{
+			serialBuffer[i] = alarmByte;
+		}
 		sum = sum + serialBuffer[i];
 		HottSerialPort->write(serialBuffer[i]);
 		delayMicroseconds(HOTTV4_TX_DELAY);
