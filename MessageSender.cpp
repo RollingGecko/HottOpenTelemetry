@@ -215,8 +215,8 @@ void HottMessage::sendMessage(){
         
         case HOTT_TELEMETRY_GAM_SENSOR_ID: //0x8D
           {
-			gamModule->createBinMessage();
-            send(gamModule->getMessage(), gamModule->getMessageSize());
+			gamModule->createMessage();
+            send(gamModule->getBinMessage(), gamModule->getBinMessageSize());
             break;
           } //end case GAM*/
         } //end case octet 2

@@ -4,6 +4,39 @@
 #include "Sensor.h"
 #include "ModuleDefines.h"
 
+struct HOTT_TEXTMODE_MSG {
+	byte start_byte;			//#01 Starting constant value == 0x7b
+	byte esc;				//#02 Escape (higher-ranking menu in text mode or Text mode leave)
+						  //0x00 to stay normal
+						  //0x01 to exit
+						  //I will send 2 times, so the ESCAPE works really well, so two data frames with 0x01 in byte 2
+	byte warning_beeps;			//#03 1=A 2=B ...
+	byte text[8][21];			//#04...#171 168 ASCII text to display to
+						  // Bit 7 = 1 -> Inverse character display
+						  // Display 21x8
+	byte stop_byte;		        //#172 constant value 0x7d
+	byte parity;				//#173 Checksum / parity
+};
+
+class HottModule
+{
+protected:
+	uint8_t serialBinMessage[178];
+	uint8_t serialTxtMessage[178];
+	struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)&serialTxtMessage[0];
+	bool dummyMessage = false;
+public:
+	HottModule();
+	virtual ~HottModule();
+	virtual void init_BinMsg() = 0;
+	virtual void createMessage() = 0;
+	virtual int getBinMessageSize() = 0;
+	uint8_t* getBinMessage();
+	void setDummyMessage(bool onOff);
+};
+
+//GAM Module
+
 struct HOTT_GAM_MSG {
 	byte start_byte;                      //#01 start byte constant value 0x7c
 	byte gam_sensor_id;             	//#02 EAM sensort id. constat value 0x8d=GENRAL AIR MODULE
@@ -17,7 +50,7 @@ struct HOTT_GAM_MSG {
 										  // 3    Temperature 1
 										  // 4    Temperature 2
 										  // 5    Fuel
-										  // 6    mAh
+										  // 6    rpm
 										  // 7    Altitude
 	byte alarm_invers2;                   //#06 alarm bitmask. Value is displayed inverted
 										  //Bit#  Alarm Field
@@ -26,8 +59,8 @@ struct HOTT_GAM_MSG {
 										  // 2    Altitude
 										  // 3    m/s                            
 										  // 4    m/3s
-										  // 5    unknown
-										  // 6    unknown
+										  // 5    Current
+										  // 6    Main Voltage
 										  // 7    "ON" sign/text msg active
 	byte cell[6];				//#7 Volt Cell 1 (in 2 mV increments, 210 == 4.20 V)
 								//#8 Volt Cell 2 (in 2 mV increments, 210 == 4.20 V)
@@ -71,29 +104,17 @@ struct HOTT_GAM_MSG {
 	byte parity;                          //#45 CHECKSUM CRC/Parity (calculated dynamicaly)
 };
 
-class HottModule
-{
-
-protected:
-	uint8_t serialMessage[178];
-	bool dummyMessage = false;
-public:
-	HottModule();
-	virtual ~HottModule();
-	virtual void init_msg() = 0;
-	virtual void createBinMessage() = 0;
-	virtual int getMessageSize() = 0;
-	uint8_t* getMessage();
-	void setDummyMessage(bool onOff);
-};
-
 class GamModule : public HottModule
 {
 private:
-	struct HOTT_GAM_MSG       *hott_gam_msg = (struct HOTT_GAM_MSG *)&serialMessage[0];
+	struct HOTT_GAM_MSG       *hott_gam_msg = (struct HOTT_GAM_MSG *)&serialBinMessage[0];
+	long timeLastMessageSend = 0;
+	bool invAlert = false;
 
+protected:
 	void set_Alert(byte alarm);
 	void set_alarminvers1(byte alarm);
+	void set_alarminvers2(byte alarm);
 	void set_cellVotlage(uint8_t cell, float voltage);
 	void set_Battery1(float voltage);
 	void set_Battery2(float voltage);
@@ -114,11 +135,24 @@ private:
 	void set_minCellVoltageNumber(byte cell);
 	void set_rpm2(uint16_t rpm);
 	void set_pressure_in_bar(float pressure);
+	void set_InvAlarm_allCellvoltage();
+	void set_InvAlarm_Bat1();
+	void set_InvAlarm_Bat2();
+	void set_InvAlarm_Temp1();
+	void set_InvAlarm_Temp2();
+	void set_InvAlarm_Fuel();
+	void set_InvAlarm_Rpm();
+	void set_InvAlarm_Altitude();
+	void set_InvAlarm_mainPowerCurrent();
+	void set_InvAlarm_mainPowerVoltage();
+	void set_InvAlarm_climb();
+	void set_InvAlarm_climb3();
+	void clear_InvAlarm();
 	
 
 public:
 	GamModule();
-	virtual void createBinMessage() override;
-	virtual int getMessageSize() override;
-	virtual void init_msg() override;
+	virtual void createMessage() override;
+	virtual int getBinMessageSize() override;
+	virtual void init_BinMsg() override;
 };

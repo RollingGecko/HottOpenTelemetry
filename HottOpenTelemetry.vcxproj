@@ -88,6 +88,7 @@
   <ItemGroup>
     <ClInclude Include="HottModule.h" />
     <ClInclude Include="MessageSender.h" />
+    <ClInclude Include="ModuleDefines.h" />
     <ClInclude Include="Sensor.h" />
     <ClInclude Include="__vm\.HottOpenTelemetry.vsarduino.h" />
   </ItemGroup>

@@ -13,9 +13,9 @@ HottModule::~HottModule()
 }
 
 
-uint8_t* HottModule::getMessage()
+uint8_t* HottModule::getBinMessage()
 {
-	return serialMessage;
+	return serialBinMessage;
 }
 
 void HottModule::setDummyMessage(bool onOff)
@@ -33,7 +33,12 @@ void GamModule::set_alarminvers1(byte alarm)
 	hott_gam_msg->alarm_invers1 = alarm;
 }
 
-void GamModule::init_msg()
+void GamModule::set_alarminvers2(byte alarm)
+{
+	hott_gam_msg->alarm_invers2 = alarm;
+}
+
+void GamModule::init_BinMsg()
 {
 	memset(hott_gam_msg, 0, sizeof(struct HOTT_GAM_MSG));
 	hott_gam_msg->start_byte = 0x7c;
@@ -148,18 +153,110 @@ void GamModule::set_pressure_in_bar(float pressure)
 	hott_gam_msg->pressure_in_bar = byte(pressure / 0.1);
 }
 
-GamModule::GamModule()
+void GamModule::set_InvAlarm_allCellvoltage()
 {
-	init_msg();
+	
+	hott_gam_msg->alarm_invers1 = hott_gam_msg->alarm_invers1 | 0x1;
 }
 
-void GamModule::createBinMessage()
+void GamModule::set_InvAlarm_Bat1()
+{
+	hott_gam_msg->alarm_invers1 = hott_gam_msg->alarm_invers1 | 0x2;
+}
+
+void GamModule::set_InvAlarm_Bat2()
+{
+	hott_gam_msg->alarm_invers1 = hott_gam_msg->alarm_invers1 | 0x4;
+}
+
+void GamModule::set_InvAlarm_Temp1()
+{
+	hott_gam_msg->alarm_invers1 = hott_gam_msg->alarm_invers1 | 0x8;
+}
+
+void GamModule::set_InvAlarm_Temp2()
+{
+	hott_gam_msg->alarm_invers1 = hott_gam_msg->alarm_invers1 | 0x10;
+}
+
+void GamModule::set_InvAlarm_Fuel()
+{
+	hott_gam_msg->alarm_invers1 = hott_gam_msg->alarm_invers1 | 0x20;
+}
+
+void GamModule::set_InvAlarm_Rpm()
+{
+	hott_gam_msg->alarm_invers1 = hott_gam_msg->alarm_invers1 | 0x40;
+}
+
+void GamModule::set_InvAlarm_Altitude()
+{
+	hott_gam_msg->alarm_invers1 = hott_gam_msg->alarm_invers1 | 0x80;
+}
+
+void GamModule::set_InvAlarm_mainPowerCurrent()
+{
+	hott_gam_msg->alarm_invers2 = hott_gam_msg->alarm_invers2 | 0x1;
+}
+
+void GamModule::set_InvAlarm_mainPowerVoltage()
+{
+	hott_gam_msg->alarm_invers2 = hott_gam_msg->alarm_invers2 | 0x2;
+}
+
+void GamModule::set_InvAlarm_climb()
+{
+	hott_gam_msg->alarm_invers2 = hott_gam_msg->alarm_invers2 | 0x8;
+}
+
+void GamModule::set_InvAlarm_climb3()
+{
+	hott_gam_msg->alarm_invers2 = hott_gam_msg->alarm_invers2 | 0x10;
+}
+
+void GamModule::clear_InvAlarm()
+{
+	hott_gam_msg->alarm_invers1 = 0;
+	hott_gam_msg->alarm_invers2 = 0;
+}
+
+GamModule::GamModule()
+{
+	init_BinMsg();
+}
+
+void GamModule::createMessage()
 {
 	//init_msg();
 	if (dummyMessage)
 	{
+		
 		set_Alert(ALARM_OFF);
-		//set_alarminvers1(3);
+		if(millis()- timeLastMessageSend >=1000)
+		{
+			if (!invAlert) {
+				set_InvAlarm_allCellvoltage();
+				set_InvAlarm_Altitude();
+				set_InvAlarm_Bat1();
+				set_InvAlarm_Bat2();
+				set_InvAlarm_Fuel();
+				set_InvAlarm_Rpm();
+				set_InvAlarm_Temp1();
+				set_InvAlarm_Temp2();
+				set_InvAlarm_mainPowerCurrent();
+				set_InvAlarm_mainPowerVoltage();
+				set_InvAlarm_climb();
+				set_InvAlarm_climb3();
+				invAlert = !invAlert;
+			}
+			else
+			{
+				clear_InvAlarm();
+				invAlert = !invAlert;
+			}
+			timeLastMessageSend = millis();
+		}
+
 		for (int i = 0; i <= 5; i++)
 		{
 			set_cellVotlage(i, 4.2);
@@ -180,13 +277,14 @@ void GamModule::createBinMessage()
 		set_speed(210);
 		set_minCellVoltage(3.7);
 		set_minCellVoltageNumber(3);
+		set_pressure_in_bar(10);
 	}
 	else
 	{
 	}
 }
 
-int GamModule::getMessageSize()
+int GamModule::getBinMessageSize()
 {
 	return sizeof(HOTT_GAM_MSG);
 }
