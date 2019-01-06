@@ -3,7 +3,7 @@
  Created:	31.12.2018 12:01:37
  Author:	AC
 */
-
+#include <Arduino.h>
 #include "HottModule.h"
 #include "MessageSender.h"
 #include <SoftwareSerial.h>
@@ -19,7 +19,7 @@ HottMessage *MessageSender;// = new HottMessage(HottSerial);
 
 // the setup function runs once when you press reset or power the board
 void setup() {
-	//Serial.begin(115200);
+	Serial.begin(115200);
 	//Serial.println("Setup");
 	HottSerial.begin(SERIAL_COM_SPEED);
 	Hott_GamModule = new GamModule();
