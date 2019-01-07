@@ -94,18 +94,12 @@ void HottMessage::sendMessage(){
 		//Higher octet3 Bits representing Key Information
         byte id_key = octet3 & 0x0f;
 
-		//Init Text Message
-        //hott_txt_msg->start_byte = 0x7b;
-        //hott_txt_msg->esc = 0;
-        //hott_txt_msg->warning_beeps = 0;
-        //memset((char *)&hott_txt_msg->text, 0x20, HOTT_TEXTMODE_MSG_TEXT_LEN);
-        //hott_txt_msg->stop_byte = 0x7d;
-		
+		gamModule->initTxtMsg();
 		//Text mode General  Air Module
 		if (id_sensor == HOTT_GAM_SENSOR_TEXT_ID) {
-			gamModule->initTxtMsg();
+			
 			//Serial.println("Inn");
-			gamModule->createTxtMessage();
+			gamModule->createTxtMessage(id_key);
 			send(gamModule->getTxtMessage(), gamModule->getTxtMessageSize() );
 		    
 		}
@@ -116,13 +110,6 @@ void HottMessage::sendMessage(){
     } // END BINARY CASE
   } // END SWITCH OCTET 1
 }
-
-//void HottMessage::send_text_msg() { //ToDo Rename to cleanTextMsg and seperate Sending. Move to Module
-////Fill empty characters with Space
-// 
-//  send(gamModule->getTxtMessage(), gamModule ->getTxtMessageSize());
-//}
-
 
 char * HottMessage::_hott_invert_all_chars(char *str) {
   return _hott_invert_chars(str, 0);

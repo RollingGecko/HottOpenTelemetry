@@ -35,7 +35,7 @@ public:
 	virtual void init_BinMsg() = 0;
 	virtual void initTxtMsg();
 	virtual void createBinMessage() = 0;
-	virtual void createTxtMessage() = 0;
+	virtual void createTxtMessage(byte keyId) = 0;
 	virtual int getBinMessageSize() = 0;
 	uint8_t* getBinMessage();
 	uint8_t* getTxtMessage();
@@ -163,6 +163,6 @@ public:
 	GamModule();
 	virtual void createBinMessage() override;
 	virtual int getBinMessageSize() override;
-	virtual void createTxtMessage() override;
+	virtual void createTxtMessage(byte keyId) override;
 	virtual void init_BinMsg() override;
 };
