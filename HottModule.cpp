@@ -2,6 +2,14 @@
 
 #include "math.h"
 
+void HottModule::cleanTxtMessage()
+{
+	for (byte *_hott_msg_ptr = hott_txt_msg->text[0]; _hott_msg_ptr < &hott_txt_msg->stop_byte; _hott_msg_ptr++) {
+		if (*_hott_msg_ptr == 0)
+			*_hott_msg_ptr = 0x20;
+	}
+}
+
 HottModule::HottModule()
 {
 
@@ -12,10 +20,29 @@ HottModule::~HottModule()
 {
 }
 
+void HottModule::initTxtMsg()
+{
+	hott_txt_msg->start_byte = 0x7b;
+	hott_txt_msg->esc = 0;
+	hott_txt_msg->warning_beeps = 0;
+	memset((char *)&hott_txt_msg->text, 0x20, HOTT_TEXTMODE_MSG_TEXT_LEN);
+	hott_txt_msg->stop_byte = 0x7d;
+}
+
 
 uint8_t* HottModule::getBinMessage()
 {
 	return serialBinMessage;
+}
+
+uint8_t * HottModule::getTxtMessage()
+{
+	return serialTxtMessage;
+}
+
+int HottModule::getTxtMessageSize()
+{
+	return sizeof(serialTxtMessage);
 }
 
 void HottModule::setDummyMessage(bool onOff)
@@ -225,7 +252,7 @@ GamModule::GamModule()
 	init_BinMsg();
 }
 
-void GamModule::createMessage()
+void GamModule::createBinMessage()
 {
 	//init_msg();
 	if (dummyMessage)
@@ -283,6 +310,22 @@ void GamModule::createMessage()
 	{
 	}
 }
+
+
+void GamModule::createTxtMessage()
+{
+	snprintf_P((char *)&hott_txt_msg->text[0], 21, PSTR("Line 0"));
+	snprintf_P((char *)&hott_txt_msg->text[1], 21, PSTR("Line 1"));
+	snprintf_P((char *)&hott_txt_msg->text[2], 21, PSTR("Line 2"));
+	snprintf_P((char *)&hott_txt_msg->text[3], 21, PSTR("Line 3"));
+	snprintf_P((char *)&hott_txt_msg->text[4], 21, PSTR("Line 4"));
+	snprintf_P((char *)&hott_txt_msg->text[5], 21, PSTR("Line 5"));
+	snprintf_P((char *)&hott_txt_msg->text[6], 21, PSTR("Line 6"));
+	snprintf_P((char *)&hott_txt_msg->text[7], 21, PSTR("Line 7"));
+
+	cleanTxtMessage();
+}
+
 
 int GamModule::getBinMessageSize()
 {

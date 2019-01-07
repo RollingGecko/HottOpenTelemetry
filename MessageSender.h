@@ -33,8 +33,7 @@ HottOpenTelemetry
 //Graupner #33601 Vario Module
 
 
-// String for text mode
-#define HOTT_TEXTMODE_MSG_TEXT_LEN		168
+
 
 
 
@@ -63,14 +62,12 @@ private:
 
 	  // HOTT focntions
 
-	  void send_text_msg();
+	  //void send_text_msg();
 	  char * _hott_invert_all_chars(char *str);
 	  char * _hott_invert_chars(char *str, int cnt);
 	  void send(uint8_t* serialBuffer, int lenght);
 	  void _hott_invert_ligne(int ligne);
-   
-  // debug
- // int freeRAM();
+
 
 public:
   HottMessage();

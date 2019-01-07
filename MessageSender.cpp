@@ -72,7 +72,7 @@ void HottMessage::sendMessage(){
                  
         case HOTT_TELEMETRY_GAM_SENSOR_ID: //0x8D
           {
-			gamModule->createMessage();
+			gamModule->createBinMessage();
             send(gamModule->getBinMessage(), gamModule->getBinMessageSize());
             break;
 
@@ -95,26 +95,19 @@ void HottMessage::sendMessage(){
         byte id_key = octet3 & 0x0f;
 
 		//Init Text Message
-        hott_txt_msg->start_byte = 0x7b;
-        hott_txt_msg->esc = 0;
-        hott_txt_msg->warning_beeps = 0;
-        memset((char *)&hott_txt_msg->text, 0x20, HOTT_TEXTMODE_MSG_TEXT_LEN);
-        hott_txt_msg->stop_byte = 0x7d;
-
+        //hott_txt_msg->start_byte = 0x7b;
+        //hott_txt_msg->esc = 0;
+        //hott_txt_msg->warning_beeps = 0;
+        //memset((char *)&hott_txt_msg->text, 0x20, HOTT_TEXTMODE_MSG_TEXT_LEN);
+        //hott_txt_msg->stop_byte = 0x7d;
+		
 		//Text mode General  Air Module
 		if (id_sensor == HOTT_GAM_SENSOR_TEXT_ID) {
+			gamModule->initTxtMsg();
 			//Serial.println("Inn");
-			
-			snprintf_P((char *)&hott_txt_msg->text[0], 21, PSTR("Line 0"));
-			snprintf_P((char *)&hott_txt_msg->text[1], 21, PSTR("Line 1"));
-			snprintf_P((char *)&hott_txt_msg->text[2], 21, PSTR("Line 2"));
-			snprintf_P((char *)&hott_txt_msg->text[3], 21, PSTR("Line 3"));
-			snprintf_P((char *)&hott_txt_msg->text[4], 21, PSTR("Line 4"));
-			snprintf_P((char *)&hott_txt_msg->text[5], 21, PSTR("Line 5"));
-			snprintf_P((char *)&hott_txt_msg->text[6], 21, PSTR("Line 6"));
-			snprintf_P((char *)&hott_txt_msg->text[7], 21, PSTR("Line 7"));
+			gamModule->createTxtMessage();
+			send(gamModule->getTxtMessage(), gamModule->getTxtMessageSize() );
 		    
-			send_text_msg();
 		}
 				
       
@@ -124,14 +117,11 @@ void HottMessage::sendMessage(){
   } // END SWITCH OCTET 1
 }
 
-void HottMessage::send_text_msg() { //ToDo Rename to cleanTextMsg and seperate Sending. Move to Module
-//Fill empty characters with Space
-  for(byte *_hott_msg_ptr = hott_txt_msg->text[0]; _hott_msg_ptr < &hott_txt_msg->stop_byte ; _hott_msg_ptr++){
-    if (*_hott_msg_ptr == 0)
-      *_hott_msg_ptr = 0x20;
-  }  
-  send(_hott_serial_buffer, sizeof(struct HOTT_TEXTMODE_MSG));
-}
+//void HottMessage::send_text_msg() { //ToDo Rename to cleanTextMsg and seperate Sending. Move to Module
+////Fill empty characters with Space
+// 
+//  send(gamModule->getTxtMessage(), gamModule ->getTxtMessageSize());
+//}
 
 
 char * HottMessage::_hott_invert_all_chars(char *str) {

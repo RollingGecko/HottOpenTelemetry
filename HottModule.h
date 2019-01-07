@@ -18,20 +18,29 @@ struct HOTT_TEXTMODE_MSG {
 	byte parity;				//#173 Checksum / parity
 };
 
+// String for text mode
+#define HOTT_TEXTMODE_MSG_TEXT_LEN		168
+
 class HottModule
 {
 protected:
 	uint8_t serialBinMessage[178];
-	uint8_t serialTxtMessage[178];
+	uint8_t serialTxtMessage[173];
 	struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)&serialTxtMessage[0];
 	bool dummyMessage = false;
+	void cleanTxtMessage();
 public:
 	HottModule();
 	virtual ~HottModule();
 	virtual void init_BinMsg() = 0;
-	virtual void createMessage() = 0;
+	virtual void initTxtMsg();
+	virtual void createBinMessage() = 0;
+	virtual void createTxtMessage() = 0;
 	virtual int getBinMessageSize() = 0;
 	uint8_t* getBinMessage();
+	uint8_t* getTxtMessage();
+	int getTxtMessageSize();
+
 	void setDummyMessage(bool onOff);
 };
 
@@ -152,7 +161,8 @@ protected:
 
 public:
 	GamModule();
-	virtual void createMessage() override;
+	virtual void createBinMessage() override;
 	virtual int getBinMessageSize() override;
+	virtual void createTxtMessage() override;
 	virtual void init_BinMsg() override;
 };
