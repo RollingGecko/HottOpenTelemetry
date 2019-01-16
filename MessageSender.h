@@ -1,10 +1,15 @@
+#pragma once
+
 /*
 HottOpenTelemetry
  */
 
+#ifndef MessageSender_h__
+#define MessageSender_h__
+
 
 #include "Arduino.h"
-#include <EEPROM.h>
+//#include <EEPROM.h>
 #include "HottModule.h"
 
 // Radio keys
@@ -60,8 +65,6 @@ private:
 	Stream *HottSerialPort;
 	GamModule *gamModule;
 
-	  // HOTT focntions
-
 	  //void send_text_msg();
 	  char * _hott_invert_all_chars(char *str);
 	  char * _hott_invert_chars(char *str, int cnt);
@@ -84,3 +87,4 @@ public:
 
 
 
+#endif // MessageSender_h__

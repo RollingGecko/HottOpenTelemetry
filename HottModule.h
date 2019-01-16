@@ -1,8 +1,14 @@
 #pragma once
 
+#ifndef HottModule_h__
+#define HottModule_h__
+
 #include "Arduino.h"
-#include "Sensor.h"
+//#include "Sensor.h"
 #include "ModuleDefines.h"
+#include "Page.h"
+
+class Page;
 
 struct HOTT_TEXTMODE_MSG {
 	byte start_byte;			//#01 Starting constant value == 0x7b
@@ -23,12 +29,16 @@ struct HOTT_TEXTMODE_MSG {
 
 class HottModule
 {
+private:
+	friend class Page;
 protected:
+	Page* currentPage;
 	uint8_t serialBinMessage[178];
 	uint8_t serialTxtMessage[173];
-	struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)&serialTxtMessage[0];
+	struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)serialTxtMessage;
 	bool dummyMessage = false;
 	void cleanTxtMessage();
+	
 public:
 	HottModule();
 	virtual ~HottModule();
@@ -40,7 +50,7 @@ public:
 	uint8_t* getBinMessage();
 	uint8_t* getTxtMessage();
 	int getTxtMessageSize();
-
+	void setCurrentPage(Page* _page);
 	void setDummyMessage(bool onOff);
 };
 
@@ -116,6 +126,7 @@ struct HOTT_GAM_MSG {
 class GamModule : public HottModule
 {
 private:
+	friend class Page;
 	struct HOTT_GAM_MSG       *hott_gam_msg = (struct HOTT_GAM_MSG *)&serialBinMessage[0];
 	long timeLastMessageSend = 0;
 	bool invAlert = false;
@@ -166,3 +177,5 @@ public:
 	virtual void createTxtMessage(byte keyId) override;
 	virtual void init_BinMsg() override;
 };
+
+#endif // HottModule_h__

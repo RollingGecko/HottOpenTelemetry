@@ -4,9 +4,11 @@
  Author:	AC
 */
 #include <Arduino.h>
+#include <Wire.h>
+#include <SoftwareSerial.h>
 #include "HottModule.h"
 #include "MessageSender.h"
-#include <SoftwareSerial.h>
+#include "Page.h"
 
 
 // Baudrate UART
@@ -15,6 +17,9 @@
 SoftwareSerial HottSerial(10, 11);
 GamModule *Hott_GamModule;// = new GamModule();
 HottMessage *MessageSender;// = new HottMessage(HottSerial);
+Page* startPage;
+Page* secondPage;
+
 
 
 // the setup function runs once when you press reset or power the board
@@ -26,6 +31,13 @@ void setup() {
 	Hott_GamModule->setDummyMessage(true);
 	MessageSender = new HottMessage(&HottSerial);
 	MessageSender->setGamModule(Hott_GamModule);
+	startPage = new Page("Start Page", Hott_GamModule);
+	secondPage = new Page("Second Page", Hott_GamModule);
+	startPage->setNext(secondPage);
+	secondPage->setPrevious(startPage);
+
+	//Page startPage("Start Page", Hott_GamModule);
+	Hott_GamModule->setCurrentPage(startPage);
 
 	
 }

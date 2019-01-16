@@ -10,6 +10,11 @@ void HottModule::cleanTxtMessage()
 	}
 }
 
+void HottModule::setCurrentPage(Page * _page)
+{
+	currentPage = _page;
+}
+
 HottModule::HottModule()
 {
 
@@ -314,17 +319,10 @@ void GamModule::createBinMessage()
 
 void GamModule::createTxtMessage(byte keyId)
 {
-	if (dummyMessage)
-	{
-		snprintf_P((char *)&hott_txt_msg->text[0], 21, PSTR("Line 0"));
-		snprintf_P((char *)&hott_txt_msg->text[1], 21, PSTR("Line 1"));
-		snprintf_P((char *)&hott_txt_msg->text[2], 21, PSTR("Line 2"));
-		snprintf_P((char *)&hott_txt_msg->text[3], 21, PSTR("Line 3"));
-		snprintf_P((char *)&hott_txt_msg->text[4], 21, PSTR("Line 4"));
-		snprintf_P((char *)&hott_txt_msg->text[5], 21, PSTR("Line 5"));
-		snprintf_P((char *)&hott_txt_msg->text[6], 21, PSTR("Line 6"));
-		snprintf_P((char *)&hott_txt_msg->text[7], 21, PSTR("Line 7"));
-	}
+	/*int number = 12;
+	float number_float = 123445.1;*/
+
+	currentPage->callPage(keyId);
 	cleanTxtMessage();
 }
 
