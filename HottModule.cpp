@@ -79,22 +79,22 @@ void GamModule::init_BinMsg()
 	hott_gam_msg->stop_byte = 0x7d;
 }
 
-void GamModule::set_cellVotlage(uint8_t cell, float voltage)
+void GamModule::setBinMsg_cellVotlage(uint8_t cell, float voltage)
 {
 		hott_gam_msg->cell[cell] = byte(round(voltage / 0.02));
 	}
 
-void GamModule::set_Battery1(float voltage)
+void GamModule::setBinMsg_Battery1(float voltage)
 {
 	hott_gam_msg->Battery1 = int(round(voltage / 0.1));
 }
 
-void GamModule::set_Battery2(float voltage)
+void GamModule::setBinMsg_Battery2(float voltage)
 {
 	hott_gam_msg->Battery2 = int(round(voltage / 0.1));
 }
 
-byte GamModule::set_temp(int temp)
+byte GamModule::setBinMsg_temp(int temp)
 {
 	int tempOut = 0;
 	if (temp < -20)
@@ -106,81 +106,81 @@ byte GamModule::set_temp(int temp)
 	return tempOut;
 }
 
-void GamModule::set_temperature1(int temp)
+void GamModule::setBinMsg_temperature1(int temp)
 {
-	hott_gam_msg->temperature1 = set_temp(temp);
+	hott_gam_msg->temperature1 = setBinMsg_temp(temp);
 }
 
-void GamModule::set_temperature2(int temp)
+void GamModule::setBinMsg_temperature2(int temp)
 {
-	hott_gam_msg->temperature2 = set_temp(temp);
+	hott_gam_msg->temperature2 = setBinMsg_temp(temp);
 }
-void GamModule::set_fuelPercent(byte fuelPercent)
+void GamModule::setBinMsg_fuelPercent(byte fuelPercent)
 {
 	hott_gam_msg->fuel_percent = fuelPercent;
 }
 
-void GamModule::set_fuelMl(uint16_t fuelMl)
+void GamModule::setBinMsg_fuelMl(uint16_t fuelMl)
 {
 	hott_gam_msg->fuel_ml = fuelMl;
 }
 
-void GamModule::set_rpm(uint16_t rpm)
+void GamModule::setBinMsg_rpm(uint16_t rpm)
 {
 	hott_gam_msg->rpm = rpm / 10;
 }
 
-void GamModule::set_altitude(uint16_t altitude)
+void GamModule::setBinMsg_altitude(uint16_t altitude)
 {
 	hott_gam_msg->altitude = altitude + 500;
 }
 
-void GamModule::set_climbrateL(float climbrateL)
+void GamModule::setBinMsg_climbrateL(float climbrateL)
 {
 	hott_gam_msg->climbrate_L = long(climbrateL / 0.01) + 30000;
 }
 
-void GamModule::set_climbrate3s(uint16_t climbrate3s)
+void GamModule::setBinMsg_climbrate3s(uint16_t climbrate3s)
 {
 	hott_gam_msg->climbrate3s = climbrate3s + 120;
 }
 
-void GamModule::set_current(float current)
+void GamModule::setBinMsg_current(float current)
 {
 	hott_gam_msg->current = long(current / 0.1);
 }
 
-void GamModule::set_mainVoltage(uint16_t voltage)
+void GamModule::setBinMsg_mainVoltage(uint16_t voltage)
 {
 	hott_gam_msg->main_voltage = long(voltage / 0.1);
 }
 
-void GamModule::set_battCap(uint16_t capacitiy)
+void GamModule::setBinMsg_battCap(uint16_t capacitiy)
 {
 	hott_gam_msg->batt_cap = capacitiy / 10;
 }
 
-void GamModule::set_speed(uint16_t speed)
+void GamModule::setBinMsg_speed(uint16_t speed)
 {
 	hott_gam_msg->speed = speed;
 }
 
-void GamModule::set_minCellVoltage(uint16_t voltage)
+void GamModule::setBinMsg_minCellVoltage(uint16_t voltage)
 {
 	hott_gam_msg->min_cell_volt = byte(round(voltage / 0.02));
 }
 
-void GamModule::set_minCellVoltageNumber(byte cell)
+void GamModule::setBinMsg_minCellVoltageNumber(byte cell)
 {
 	hott_gam_msg->min_cell_volt_num = cell;
 }
 
-void GamModule::set_rpm2(uint16_t rpm)
+void GamModule::setBinMsg_rpm2(uint16_t rpm)
 {
 	hott_gam_msg->rpm = rpm / 10;
 }
 
-void GamModule::set_pressure_in_bar(float pressure)
+void GamModule::setBinMsg_pressure_in_bar(float pressure)
 {
 	hott_gam_msg->pressure_in_bar = byte(pressure / 0.1);
 }
@@ -291,28 +291,45 @@ void GamModule::createBinMessage()
 
 		for (int i = 0; i <= 5; i++)
 		{
-			set_cellVotlage(i, 4.2);
+			setBinMsg_cellVotlage(i, 4.2);
 		}
-		set_Battery1(8.4);
-		set_Battery2(8.4);
-		set_temperature1(50);
-		set_temperature2(100);
-		set_fuelPercent(80);
-		set_fuelMl(1111);
-		set_rpm2(30000);
-		set_altitude(121);
-		set_climbrateL(1.1);
-		set_climbrate3s(200);
-		set_current(45);
-		set_mainVoltage(11.6);
-		set_battCap(1210);
-		set_speed(210);
-		set_minCellVoltage(3.7);
-		set_minCellVoltageNumber(3);
-		set_pressure_in_bar(10);
+		setBinMsg_Battery1(8.4);
+		setBinMsg_Battery2(8.4);
+		setBinMsg_temperature1(50);
+		setBinMsg_temperature2(100);
+		setBinMsg_fuelPercent(80);
+		setBinMsg_fuelMl(1111);
+		setBinMsg_rpm2(30000);
+		setBinMsg_altitude(121);
+		setBinMsg_climbrateL(1.1);
+		setBinMsg_climbrate3s(200);
+		setBinMsg_current(45);
+		setBinMsg_mainVoltage(11.6);
+		setBinMsg_battCap(1210);
+		setBinMsg_speed(210);
+		setBinMsg_minCellVoltage(3.7);
+		setBinMsg_minCellVoltageNumber(3);
+		setBinMsg_pressure_in_bar(10);
 	}
 	else
 	{
+		setBinMsg_Battery1(8.4);
+		setBinMsg_Battery2(8.4);
+		setBinMsg_temperature1(50);
+		setBinMsg_temperature2(100);
+		setBinMsg_fuelPercent(80);
+		setBinMsg_fuelMl(1111);
+		setBinMsg_rpm2(30000);
+		setBinMsg_altitude(121);
+		setBinMsg_climbrateL(1.1);
+		setBinMsg_climbrate3s(200);
+		setBinMsg_current(45);
+		setBinMsg_mainVoltage(11.6);
+		setBinMsg_battCap(1210);
+		setBinMsg_speed(210);
+		setBinMsg_minCellVoltage(3.7);
+		setBinMsg_minCellVoltageNumber(3);
+		setBinMsg_pressure_in_bar(10);
 	}
 }
 
