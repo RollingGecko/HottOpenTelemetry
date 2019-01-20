@@ -42,7 +42,7 @@ SensorValue<T>::SensorValue(const char* _name, byte _alarmTypeMin, byte _alarmTy
 	//strcat(dumpMax, namePostfixMax);
 	//Serial.println(dumpMax);
 	
-	maxAlarm = new SensorAlarm<T>("MaxAlarm", _alarmTypeMax); 
+	maxAlarm = new SensorAlarm<T>("MaxAlarm", _alarmTypeMax, true); 
 	
 }
 

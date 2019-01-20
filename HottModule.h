@@ -133,7 +133,7 @@ public:
 	SensorValue<float>*		voltageMain;
 	SensorValue<uint16_t>*	batteryCapacity;
 	SensorValue<uint16_t>*	speed;
-	SensorValue<byte>*	minVoltageCellNumber;
+	SensorValue<byte>*		minVoltageCellNumber;
 	SensorValue<uint16_t>*	rpm2;
 	SensorValue<float>*		pressure;
 	//void set_cellVotlage(uint8_t cell, float voltage);

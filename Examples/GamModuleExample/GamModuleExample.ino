@@ -30,7 +30,9 @@ void setup() {
 	Hott_GamModule = new GamModule();
 	Hott_GamModule->initSensors(true, true, true, true, true, true, true, true, true,
 		true, true, true, true, true, true, true, true, true);
-	Hott_GamModule->setDummyMessage(true);
+	//Hott_GamModule->initSensors(false, true, false, false, false, false, false, false, false, false, false, false, 
+	//	false, false, false, false, false, false);
+	Hott_GamModule->setDummyMessage(false);
 	MessageSender = new HottMessage(&HottSerial);
 	MessageSender->setGamModule(Hott_GamModule);
 	startPage = new Page("Start Page", Hott_GamModule);
@@ -49,7 +51,7 @@ void setup() {
 void loop() {
 	//Serial.println("loop");
 	//Hott_GamModule->cellVoltage->setValue(4.1);
-	//Hott_GamModule->battery1->setValue(8.4);
+	Hott_GamModule->battery1->setValue(8.4);
 
 
 	//Hott_GamModule->speed->setValue(100);

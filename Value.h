@@ -5,7 +5,7 @@ template <class T>
 class Value
 {
 private:
-	T value;
+	T value = 0;
 	const char* valueName;
 public:
 	Value();

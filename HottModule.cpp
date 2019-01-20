@@ -392,6 +392,77 @@ void GamModule::createBinMessage()
 	}
 	else
 	{
+		if (battery1 != nullptr)
+		{
+			setBinMsg_Battery1(battery1->getValue());
+		}
+		if (battery2 != nullptr)
+		{
+			setBinMsg_Battery2(battery2->getValue());
+		}
+		if (temperature1 != nullptr)
+		{
+			setBinMsg_temperature1(temperature1->getValue());
+		}
+		if (temperature2 != nullptr)
+		{
+			setBinMsg_temperature2(temperature2->getValue());
+		}
+		if (fuelPercentage != nullptr)
+		{
+			setBinMsg_fuelPercent(fuelPercentage->getValue());
+		}
+		if (fuelMl != nullptr)
+		{
+			setBinMsg_fuelMl(fuelMl-> getValue());
+		}
+		if (rpm2 != nullptr)
+		{
+			setBinMsg_rpm2(rpm2->getValue());
+		}
+		if (rpm != nullptr)
+		{
+			setBinMsg_rpm(rpm->getValue());
+		}
+		if (altitude != nullptr)
+		{
+			setBinMsg_altitude(altitude->getValue());
+		}
+		if (climbrate_L != nullptr)
+		{
+			setBinMsg_climbrateL(climbrate_L->getValue());
+		}
+		if (climbrate3s != nullptr)
+		{
+			setBinMsg_climbrate3s(climbrate3s->getValue());
+		}
+		if (current != nullptr)
+		{
+			setBinMsg_current(current->getValue());
+		}
+		if (voltageMain!=nullptr)
+		{
+			setBinMsg_mainVoltage(voltageMain->getValue());
+		}
+		if (batteryCapacity!= nullptr)
+		{
+			setBinMsg_battCap(batteryCapacity->getValue());
+		}
+		if (speed!=nullptr)
+		{
+			setBinMsg_speed(speed->getValue());
+		}
+
+			setBinMsg_minCellVoltage(3.7);
+
+		if (minVoltageCellNumber!=nullptr)
+		{
+			setBinMsg_minCellVoltageNumber(minVoltageCellNumber->getValue());
+		}
+		if (pressure!=nullptr)
+		{
+			setBinMsg_pressure_in_bar(pressure->getValue());
+		}
 		
 	}
 }
