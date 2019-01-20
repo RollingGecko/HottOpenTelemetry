@@ -62,75 +62,75 @@ void GamModule::initSensors(bool _cellVoltage, bool _battery1, bool _battery2, b
 {
 	if (_cellVoltage)
 	{
-		cellVoltage = new SensorValue<float>("cellV", ALARM_MINCELLVOLTAGE);
+		cellVoltage = new SensorValue<float>("cellV",this,ALARM_MINCELLVOLTAGE);
 	}
 	if (_battery1)
 	{
-		battery1 = new SensorValue<float>("Bat1", ALARM_MINSENSVOL1, ALARM_MAXSENSVOL1);
+		battery1 = new SensorValue<float>("Bat1", this, ALARM_MINSENSVOL1, ALARM_MAXSENSVOL1);
 	}
 	if (_battery2)
 	{
-		battery2 = new SensorValue<float>("Bat2", ALARM_MINSENSVOL2, ALARM_MAXSENSVOL2);
+		battery2 = new SensorValue<float>("Bat2", this, ALARM_MINSENSVOL2, ALARM_MAXSENSVOL2);
 	}
 	if (_temp1)
 	{
-		temperature1 = new SensorValue<byte>("Temp1", ALARM_MINTEMP1, ALARM_MAXTEMP1);
+		temperature1 = new SensorValue<byte>("Temp1", this, ALARM_MINTEMP1, ALARM_MAXTEMP1);
 	}
 	if (_temp2)
 	{
-		temperature2 = new SensorValue<byte>("Temp2", ALARM_MINTEMP2, ALARM_MAXTEMP2);
+		temperature2 = new SensorValue<byte>("Temp2", this, ALARM_MINTEMP2, ALARM_MAXTEMP2);
 	}
 	if (_fuelPerc)
 	{
-		fuelPercentage = new SensorValue<byte>("Fuel%");
+		fuelPercentage = new SensorValue<byte>("Fuel%",this);
 	}
 	if (_fuelMl)
 	{
-		fuelMl = new SensorValue<uint16_t>("Fuel", ALARM_FUELRESERVE);
+		fuelMl = new SensorValue<uint16_t>("Fuel", this, ALARM_FUELRESERVE);
 	}
 	if (_rpm)
 	{
-		rpm = new SensorValue<uint16_t>("RPM", ALARM_MINRPM, ALARM_MAXRPM);
+		rpm = new SensorValue<uint16_t>("RPM", this, ALARM_MINRPM, ALARM_MAXRPM);
 	}
 	if (_alt)
 	{
-		altitude = new SensorValue<uint16_t>("Alt", ALARM_MINALT, ALARM_MAXALTITUDE);
+		altitude = new SensorValue<uint16_t>("Alt", this, ALARM_MINALT, ALARM_MAXALTITUDE);
 	}
 	if (_climbL)
 	{
-		climbrate_L = new SensorValue<float>("ClimbL", ALARM_OFF, ALARM_CLIMBRATE1);
+		climbrate_L = new SensorValue<float>("ClimbL", this, ALARM_OFF, ALARM_CLIMBRATE1);
 	}
 	if (_climb3s)
 	{
-		climbrate3s = new SensorValue<uint16_t>("Climb3s", ALARM_OFF, ALARM_OFF);
+		climbrate3s = new SensorValue<uint16_t>("Climb3s", this, ALARM_OFF, ALARM_OFF);
 	}
 	if (_current)
 	{
-		current = new SensorValue<float>("Cur", ALARM_OFF, ALARM_MAXCURRENT);
+		current = new SensorValue<float>("Cur", this, ALARM_OFF, ALARM_MAXCURRENT);
 	}
 	if (_voltageMain)
 	{
-		voltageMain = new SensorValue<float>("MainVol", ALARM_MINPOWVOLTAGE, ALARM_MAXPPOWVOLTAGE);
+		voltageMain = new SensorValue<float>("MainVol", this, ALARM_MINPOWVOLTAGE, ALARM_MAXPPOWVOLTAGE);
 	}
 	if (_batCap)
 	{
-		batteryCapacity = new SensorValue<uint16_t>("Cap", ALARM_OFF, ALARM_MAXUSEDCAPACITY);
+		batteryCapacity = new SensorValue<uint16_t>("Cap", this, ALARM_OFF, ALARM_MAXUSEDCAPACITY);
 	}
 	if (_speed)
 	{
-		speed = new SensorValue<uint16_t>("Speed", ALARM_MINSPEED, ALARM_MAXSPEED);
+		speed = new SensorValue<uint16_t>("Speed", this, ALARM_MINSPEED, ALARM_MAXSPEED);
 	}
 	if (_minVolCelNum)
 	{
-		minVoltageCellNumber = new SensorValue<byte>("MinVolCel", ALARM_OFF, ALARM_OFF);
+		minVoltageCellNumber = new SensorValue<byte>("MinVolCel", this, ALARM_OFF, ALARM_OFF);
 	}
 	if (_rpm2)
 	{
-		rpm2 = new SensorValue<uint16_t>("RPM2", ALARM_MINRPM, ALARM_MAXRPM);
+		rpm2 = new SensorValue<uint16_t>("RPM2", this, ALARM_MINRPM, ALARM_MAXRPM);
 	}
 	if (_pressure)
 	{
-		pressure = new SensorValue<float>("Pressure", ALARM_OFF, ALARM_OFF);
+		pressure = new SensorValue<float>("Pressure", this, ALARM_OFF, ALARM_OFF);
 	}
 }
 

@@ -7,7 +7,8 @@
 //#include "Sensor.h"
 #include "ModuleDefines.h"
 #include "Page.h"
-#include "SEnsorValue.h"
+#include "SensorValue.h"
+#include "SensorAlarm.h"
 
 class Page;
 
@@ -32,6 +33,7 @@ class HottModule
 {
 private:
 	friend class Page;
+	
 protected:
 	Page* currentPage;
 	uint8_t serialBinMessage[178];
@@ -39,6 +41,7 @@ protected:
 	struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)serialTxtMessage;
 	bool dummyMessage = false;
 	void cleanTxtMessage();
+	virtual void set_Alert(byte alarm) = 0;
 
 	 
 	
@@ -118,7 +121,7 @@ public:
 	virtual int getBinMessageSize() override;
 	virtual void createTxtMessage(byte keyId) override;
 	virtual void init_BinMsg() override;
-	SensorValue<float>*		cellVoltage;
+	SensorValue<float>*		cellVoltage; //ToDo: Bring an array of values in this object 
 	SensorValue<float>*		battery1;
 	SensorValue<float>*		battery2;
 	SensorValue<byte>*		temperature1;

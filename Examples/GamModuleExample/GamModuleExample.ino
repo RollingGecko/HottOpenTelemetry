@@ -43,18 +43,32 @@ void setup() {
 	//Page startPage("Start Page", Hott_GamModule);
 	Hott_GamModule->setCurrentPage(startPage);
 
+	Hott_GamModule->cellVoltage->setValue(4.2);
+	Hott_GamModule->battery1->setValue(8.4);
+	Hott_GamModule->battery2->setValue(8.4);
+	Hott_GamModule->temperature1->setValue(120);
+	Hott_GamModule->temperature2->setValue(121);
+	Hott_GamModule->fuelPercentage->setValue(80);
+	Hott_GamModule->fuelMl->setValue(1200);
+	Hott_GamModule->rpm->setValue(34000);
+	Hott_GamModule->altitude->setValue(120);
+	Hott_GamModule->climbrate_L->setValue(5.2);
+	Hott_GamModule->climbrate3s->setValue(10.2);
+	Hott_GamModule->current->setValue(23.4);
+	Hott_GamModule->voltageMain->setValue(10.2);
+	Hott_GamModule->batteryCapacity->setValue(2200);
+	Hott_GamModule->speed->setValue(223);
+	Hott_GamModule->minVoltageCellNumber->setValue(2);
+	Hott_GamModule->rpm2->setValue(33000);
+	Hott_GamModule->pressure->setValue(12.1);
+
 
 	
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
-	//Serial.println("loop");
-	//Hott_GamModule->cellVoltage->setValue(4.1);
-	Hott_GamModule->battery1->setValue(8.4);
 
-
-	//Hott_GamModule->speed->setValue(100);
 	MessageSender->sendMessage();
 	
 }

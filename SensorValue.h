@@ -2,6 +2,7 @@
 #include "Value.h"
 #include "SensorAlarm.h"
 #include "ModuleDefines.h"
+#include "HottModule.h"
 
 template <class T>
 class SensorValue : public Value<T> {
@@ -9,7 +10,7 @@ private:
 
 public:
 	SensorValue();
-	SensorValue(const char* _name, byte _alarmTypeMin = ALARM_OFF, byte _alarmTypeMax = ALARM_OFF);
+	SensorValue(const char* _name, HottModule* _moduleObject, byte _alarmTypeMin = ALARM_OFF, byte _alarmTypeMax = ALARM_OFF);
 	~SensorValue();
 		SensorAlarm<T>* minAlarm;
 	SensorAlarm<T>* maxAlarm;
@@ -23,7 +24,7 @@ public:
 //}
 
 template <class T>
-SensorValue<T>::SensorValue(const char* _name, byte _alarmTypeMin, byte _alarmTypeMax):Value<T>(_name)
+SensorValue<T>::SensorValue(const char* _name, HottModule* _moduleObject, byte _alarmTypeMin, byte _alarmTypeMax):Value<T>(_name)
 {
 	/*const char* namePostfixMin = "MinAl";
 	const char* namePostfixMax = "MaxAl";
@@ -35,14 +36,14 @@ SensorValue<T>::SensorValue(const char* _name, byte _alarmTypeMin, byte _alarmTy
 	strcat(dumpMin, namePostfixMin);*/
 	
 	//Serial.println(dumpMin);
-	minAlarm = new SensorAlarm<T>("MinAlarm", _alarmTypeMin);
+	minAlarm = new SensorAlarm<T>("MinAlarm",_moduleObject, _alarmTypeMin);
 	//char dumpMax[sizeName];
 	//Serial.println(sizeName);
 	//strcpy(dumpMax, _name);
 	//strcat(dumpMax, namePostfixMax);
 	//Serial.println(dumpMax);
 	
-	maxAlarm = new SensorAlarm<T>("MaxAlarm", _alarmTypeMax, true); 
+	maxAlarm = new SensorAlarm<T>("MaxAlarm",_moduleObject, _alarmTypeMax, true); 
 	
 }
 
