@@ -7,6 +7,7 @@
 //#include "Sensor.h"
 #include "ModuleDefines.h"
 #include "Page.h"
+#include "SEnsorValue.h"
 
 class Page;
 
@@ -38,6 +39,8 @@ protected:
 	struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)serialTxtMessage;
 	bool dummyMessage = false;
 	void cleanTxtMessage();
+
+	 
 	
 public:
 	HottModule();
@@ -66,6 +69,7 @@ private:
 	bool invAlert = false;
 
 protected:
+   	  
 	void set_Alert(byte alarm);
 	void set_alarminvers1(byte alarm);
 	void set_alarminvers2(byte alarm);
@@ -106,30 +110,52 @@ protected:
 
 public:
 	GamModule();
+	void initSensors(bool _cellVoltage, bool _battery1, bool _battery2, bool _temp1, bool _temp2
+		, bool _fuelPerc, bool _fuelMl, bool _rpm, bool _alt, bool _climbL, bool _climb3s
+		, bool _current, bool _voltageMain, bool _batCap, bool _speed, bool _minVolCelNum, bool _rpm2
+		, bool _pressure);
 	virtual void createBinMessage() override;
 	virtual int getBinMessageSize() override;
 	virtual void createTxtMessage(byte keyId) override;
 	virtual void init_BinMsg() override;
-	void set_cellVotlage(uint8_t cell, float voltage);
-	void set_Battery1(float voltage);
-	void set_Battery2(float voltage);
-	byte set_temp(int temp);
-	void set_temperature1(int temp);
-	void set_temperature2(int temp);
-	void set_fuelPercent(byte fuelPercent);
-	void set_fuelMl(uint16_t fuelMl);
-	void set_rpm(uint16_t rpm);
-	void set_altitude(uint16_t altitude);
-	void set_climbrateL(float climbrateL);
-	void set_climbrate3s(uint16_t climbrate3s);
-	void set_current(float current);
-	void set_mainVoltage(uint16_t voltage);
-	void set_battCap(uint16_t capacitiy);
-	void set_speed(uint16_t speed);
-	void set_minCellVoltage(uint16_t voltage);
-	void set_minCellVoltageNumber(byte cell);
-	void set_rpm2(uint16_t rpm);
-	void set_pressure_in_bar(float pressure);
+	SensorValue<float>*		cellVoltage;
+	SensorValue<float>*		battery1;
+	SensorValue<float>*		battery2;
+	SensorValue<byte>*		temperature1;
+	SensorValue<byte>*		temperature2;
+	SensorValue<byte>*		fuelPercentage;
+	SensorValue<uint16_t>*	fuelMl;
+	SensorValue<uint16_t>*	rpm;
+	SensorValue<uint16_t>*	altitude;
+	SensorValue<float>*		climbrate_L;
+	SensorValue<uint16_t>*	climbrate3s;
+	SensorValue<float>*		current;
+	SensorValue<float>*		voltageMain;
+	SensorValue<uint16_t>*	batteryCapacity;
+	SensorValue<uint16_t>*	speed;
+	SensorValue<byte>*	minVoltageCellNumber;
+	SensorValue<uint16_t>*	rpm2;
+	SensorValue<float>*		pressure;
+	//void set_cellVotlage(uint8_t cell, float voltage);
+	//void set_Battery1(float voltage);
+	//void set_Battery2(float voltage);
+	//byte set_temp(int temp);
+	//void set_temperature1(int temp);
+	//void set_temperature2(int temp);
+	//void set_fuelPercent(byte fuelPercent);
+	//void set_fuelMl(uint16_t fuelMl);
+	//void set_rpm(uint16_t rpm);
+	//void set_altitude(uint16_t altitude);
+	//void set_climbrateL(float climbrateL);
+	//void set_climbrate3s(uint16_t climbrate3s);
+	//void set_current(float current);
+	////void set_mainVoltage(uint16_t voltage);
+	//void set_battCap(uint16_t capacitiy);
+	//void set_speed(uint16_t speed);
+	//void set_minCellVoltage(uint16_t voltage);
+	//void set_minCellVoltageNumber(byte cell);
+	//void set_rpm2(uint16_t rpm);
+	//void set_pressure_in_bar(float pressure);
 };
 
 #endif // HottModule_h__

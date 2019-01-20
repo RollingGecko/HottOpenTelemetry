@@ -28,6 +28,8 @@ void setup() {
 	//Serial.println("Setup");
 	HottSerial.begin(SERIAL_COM_SPEED);
 	Hott_GamModule = new GamModule();
+	Hott_GamModule->initSensors(true, true, true, true, true, true, true, true, true,
+		true, true, true, true, true, true, true, true, true);
 	Hott_GamModule->setDummyMessage(true);
 	MessageSender = new HottMessage(&HottSerial);
 	MessageSender->setGamModule(Hott_GamModule);
@@ -39,12 +41,18 @@ void setup() {
 	//Page startPage("Start Page", Hott_GamModule);
 	Hott_GamModule->setCurrentPage(startPage);
 
+
 	
 }
 
 // the loop function runs over and over again until power down or reset
 void loop() {
 	//Serial.println("loop");
+	//Hott_GamModule->cellVoltage->setValue(4.1);
+	//Hott_GamModule->battery1->setValue(8.4);
+
+
+	//Hott_GamModule->speed->setValue(100);
 	MessageSender->sendMessage();
 	
 }

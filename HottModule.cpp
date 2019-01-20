@@ -55,6 +55,85 @@ void HottModule::setDummyMessage(bool onOff)
 	dummyMessage = onOff;
 }
 
+void GamModule::initSensors(bool _cellVoltage, bool _battery1, bool _battery2, bool _temp1, bool _temp2
+	, bool _fuelPerc, bool _fuelMl, bool _rpm, bool _alt, bool _climbL, bool _climb3s
+	, bool _current, bool _voltageMain, bool _batCap, bool _speed, bool _minVolCelNum, bool _rpm2
+	, bool _pressure)
+{
+	if (_cellVoltage)
+	{
+		cellVoltage = new SensorValue<float>("cellV", ALARM_MINCELLVOLTAGE);
+	}
+	if (_battery1)
+	{
+		battery1 = new SensorValue<float>("Bat1", ALARM_MINSENSVOL1, ALARM_MAXSENSVOL1);
+	}
+	if (_battery2)
+	{
+		battery2 = new SensorValue<float>("Bat2", ALARM_MINSENSVOL2, ALARM_MAXSENSVOL2);
+	}
+	if (_temp1)
+	{
+		temperature1 = new SensorValue<byte>("Temp1", ALARM_MINTEMP1, ALARM_MAXTEMP1);
+	}
+	if (_temp2)
+	{
+		temperature2 = new SensorValue<byte>("Temp2", ALARM_MINTEMP2, ALARM_MAXTEMP2);
+	}
+	if (_fuelPerc)
+	{
+		fuelPercentage = new SensorValue<byte>("Fuel%");
+	}
+	if (_fuelMl)
+	{
+		fuelMl = new SensorValue<uint16_t>("Fuel", ALARM_FUELRESERVE);
+	}
+	if (_rpm)
+	{
+		rpm = new SensorValue<uint16_t>("RPM", ALARM_MINRPM, ALARM_MAXRPM);
+	}
+	if (_alt)
+	{
+		altitude = new SensorValue<uint16_t>("Alt", ALARM_MINALT, ALARM_MAXALTITUDE);
+	}
+	if (_climbL)
+	{
+		climbrate_L = new SensorValue<float>("ClimbL", ALARM_OFF, ALARM_CLIMBRATE1);
+	}
+	if (_climb3s)
+	{
+		climbrate3s = new SensorValue<uint16_t>("Climb3s", ALARM_OFF, ALARM_OFF);
+	}
+	if (_current)
+	{
+		current = new SensorValue<float>("Cur", ALARM_OFF, ALARM_MAXCURRENT);
+	}
+	if (_voltageMain)
+	{
+		voltageMain = new SensorValue<float>("MainVol", ALARM_MINPOWVOLTAGE, ALARM_MAXPPOWVOLTAGE);
+	}
+	if (_batCap)
+	{
+		batteryCapacity = new SensorValue<uint16_t>("Cap", ALARM_OFF, ALARM_MAXUSEDCAPACITY);
+	}
+	if (_speed)
+	{
+		speed = new SensorValue<uint16_t>("Speed", ALARM_MINSPEED, ALARM_MAXSPEED);
+	}
+	if (_minVolCelNum)
+	{
+		minVoltageCellNumber = new SensorValue<byte>("MinVolCel", ALARM_OFF, ALARM_OFF);
+	}
+	if (_rpm2)
+	{
+		rpm2 = new SensorValue<uint16_t>("RPM2", ALARM_MINRPM, ALARM_MAXRPM);
+	}
+	if (_pressure)
+	{
+		pressure = new SensorValue<float>("Pressure", ALARM_OFF, ALARM_OFF);
+	}
+}
+
 void GamModule::set_Alert(byte alarm)
 {
 	hott_gam_msg->warning_beeps = alarm;
@@ -293,7 +372,7 @@ void GamModule::createBinMessage()
 		{
 			setBinMsg_cellVotlage(i, 4.2);
 		}
-		setBinMsg_Battery1(8.4);
+		setBinMsg_Battery1(4);
 		setBinMsg_Battery2(8.4);
 		setBinMsg_temperature1(50);
 		setBinMsg_temperature2(100);
@@ -306,30 +385,14 @@ void GamModule::createBinMessage()
 		setBinMsg_current(45);
 		setBinMsg_mainVoltage(11.6);
 		setBinMsg_battCap(1210);
-		setBinMsg_speed(210);
+		setBinMsg_speed(100);
 		setBinMsg_minCellVoltage(3.7);
 		setBinMsg_minCellVoltageNumber(3);
 		setBinMsg_pressure_in_bar(10);
 	}
 	else
 	{
-		setBinMsg_Battery1(8.4);
-		setBinMsg_Battery2(8.4);
-		setBinMsg_temperature1(50);
-		setBinMsg_temperature2(100);
-		setBinMsg_fuelPercent(80);
-		setBinMsg_fuelMl(1111);
-		setBinMsg_rpm2(30000);
-		setBinMsg_altitude(121);
-		setBinMsg_climbrateL(1.1);
-		setBinMsg_climbrate3s(200);
-		setBinMsg_current(45);
-		setBinMsg_mainVoltage(11.6);
-		setBinMsg_battCap(1210);
-		setBinMsg_speed(210);
-		setBinMsg_minCellVoltage(3.7);
-		setBinMsg_minCellVoltageNumber(3);
-		setBinMsg_pressure_in_bar(10);
+		
 	}
 }
 
