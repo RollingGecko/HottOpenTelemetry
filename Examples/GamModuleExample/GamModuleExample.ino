@@ -32,11 +32,15 @@ void setup() {
 		true, true, true, true, true, true, true, true, true);
 	//Hott_GamModule->initSensors(false, true, false, false, false, false, false, false, false, false, false, false, 
 	//	false, false, false, false, false, false);
-	Hott_GamModule->setDummyMessage(false);
+	//Hott_GamModule->setDummyMessage(false);
 	MessageSender = new HottMessage(&HottSerial);
 	MessageSender->setGamModule(Hott_GamModule);
+
+	//
 	startPage = new Page("Start Page", Hott_GamModule);
 	secondPage = new Page("Second Page", Hott_GamModule);
+
+	//Page Linking Configuation
 	startPage->setNext(secondPage);
 	secondPage->setPrevious(startPage);
 

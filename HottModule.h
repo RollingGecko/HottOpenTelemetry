@@ -113,6 +113,14 @@ protected:
 
 public:
 	GamModule();
+
+	//************************************
+	// Method:    initSensors
+	// FullName:  GamModule::initSensors
+	// Usage:	  Select which sensor values should be initialized for gam module class
+	// Access:    public 
+	// Returns:   void
+	//************************************
 	void initSensors(bool _cellVoltage, bool _battery1, bool _battery2, bool _temp1, bool _temp2
 		, bool _fuelPerc, bool _fuelMl, bool _rpm, bool _alt, bool _climbL, bool _climb3s
 		, bool _current, bool _voltageMain, bool _batCap, bool _speed, bool _minVolCelNum, bool _rpm2

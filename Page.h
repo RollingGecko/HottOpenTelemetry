@@ -33,6 +33,14 @@ protected:
 public:
 	Page(char * _title, HottModule* _module);
 	virtual ~Page();
+	//************************************
+	// Method:    setPrevious
+	// FullName:  Page::setPrevious
+	// Access:    public 
+	// Returns:   void
+	// Qualifier:
+	// Parameter: Page * _page
+	//************************************
 	void setPrevious(Page* _page);
 	void setNext(Page* _page);
 	virtual void callPage();
