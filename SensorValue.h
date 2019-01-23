@@ -10,9 +10,9 @@ private:
 
 public:
 	SensorValue();
-	SensorValue(const char* _name, HottModule* _moduleObject, byte _alarmTypeMin = ALARM_OFF, byte _alarmTypeMax = ALARM_OFF);
+	SensorValue(const char* _name, HottModule* _moduleObject, char _alarmTypeMin = ALARM_OFF, char _alarmTypeMax = ALARM_OFF);
 	~SensorValue();
-		SensorAlarm<T>* minAlarm;
+	SensorAlarm<T>* minAlarm;
 	SensorAlarm<T>* maxAlarm;
 
 };
@@ -24,11 +24,11 @@ public:
 //}
 
 template <class T>
-SensorValue<T>::SensorValue(const char* _name, HottModule* _moduleObject, byte _alarmTypeMin, byte _alarmTypeMax):Value<T>(_name)
+SensorValue<T>::SensorValue(const char* _name, HottModule* _moduleObject, char _alarmTypeMin, char _alarmTypeMax):Value<T>(_name)
 {
 	/*const char* namePostfixMin = "MinAl";
 	const char* namePostfixMax = "MaxAl";
-	int sizeName = strlen(_name)+ strlen(namePostfixMin);
+	uint8_t sizeName = strlen(_name)+ strlen(namePostfixMin);
 	
 	char dumpMin[sizeName];
 	

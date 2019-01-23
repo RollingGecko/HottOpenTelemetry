@@ -4,7 +4,7 @@
 
 void HottModule::cleanTxtMessage()
 {
-	for (byte *_hott_msg_ptr = hott_txt_msg->text[0]; _hott_msg_ptr < &hott_txt_msg->stop_byte; _hott_msg_ptr++) {
+	for (char *_hott_msg_ptr = hott_txt_msg->text[0]; _hott_msg_ptr < &hott_txt_msg->stop_byte; _hott_msg_ptr++) {
 		if (*_hott_msg_ptr == 0)
 			*_hott_msg_ptr = 0x20;
 	}
@@ -45,7 +45,7 @@ uint8_t * HottModule::getTxtMessage()
 	return serialTxtMessage;
 }
 
-int HottModule::getTxtMessageSize()
+uint8_t HottModule::getTxtMessageSize()
 {
 	return sizeof(serialTxtMessage);
 }
@@ -74,15 +74,15 @@ void GamModule::initSensors(bool _cellVoltage, bool _battery1, bool _battery2, b
 	}
 	if (_temp1)
 	{
-		temperature1 = new SensorValue<byte>("Temp1", this, ALARM_MINTEMP1, ALARM_MAXTEMP1);
+		temperature1 = new SensorValue<char>("Temp1", this, ALARM_MINTEMP1, ALARM_MAXTEMP1);
 	}
 	if (_temp2)
 	{
-		temperature2 = new SensorValue<byte>("Temp2", this, ALARM_MINTEMP2, ALARM_MAXTEMP2);
+		temperature2 = new SensorValue<char>("Temp2", this, ALARM_MINTEMP2, ALARM_MAXTEMP2);
 	}
 	if (_fuelPerc)
 	{
-		fuelPercentage = new SensorValue<byte>("Fuel%",this);
+		fuelPercentage = new SensorValue<char>("Fuel%",this);
 	}
 	if (_fuelMl)
 	{
@@ -122,7 +122,7 @@ void GamModule::initSensors(bool _cellVoltage, bool _battery1, bool _battery2, b
 	}
 	if (_minVolCelNum)
 	{
-		minVoltageCellNumber = new SensorValue<byte>("MinVolCel", this, ALARM_OFF, ALARM_OFF);
+		minVoltageCellNumber = new SensorValue<char>("MinVolCel", this, ALARM_OFF, ALARM_OFF);
 	}
 	if (_rpm2)
 	{
@@ -134,17 +134,17 @@ void GamModule::initSensors(bool _cellVoltage, bool _battery1, bool _battery2, b
 	}
 }
 
-void GamModule::set_Alert(byte alarm)
+void GamModule::set_Alert(char alarm)
 {
 	hott_gam_msg->warning_beeps = alarm;
 }
 
-void GamModule::set_alarminvers1(byte alarm)
+void GamModule::set_alarminvers1(char alarm)
 {
 	hott_gam_msg->alarm_invers1 = alarm;
 }
 
-void GamModule::set_alarminvers2(byte alarm)
+void GamModule::set_alarminvers2(char alarm)
 {
 	hott_gam_msg->alarm_invers2 = alarm;
 }
@@ -160,22 +160,22 @@ void GamModule::init_BinMsg()
 
 void GamModule::setBinMsg_cellVotlage(uint8_t cell, float voltage)
 {
-		hott_gam_msg->cell[cell] = byte(round(voltage / 0.02));
+		hott_gam_msg->cell[cell] = char(round(voltage / 0.02));
 	}
 
 void GamModule::setBinMsg_Battery1(float voltage)
 {
-	hott_gam_msg->Battery1 = int(round(voltage / 0.1));
+	hott_gam_msg->Battery1 = uint8_t(round(voltage / 0.1));
 }
 
 void GamModule::setBinMsg_Battery2(float voltage)
 {
-	hott_gam_msg->Battery2 = int(round(voltage / 0.1));
+	hott_gam_msg->Battery2 = uint8_t(round(voltage / 0.1));
 }
 
-byte GamModule::setBinMsg_temp(int temp)
+char GamModule::setBinMsg_temp(uint8_t temp)
 {
-	int tempOut = 0;
+	uint8_t tempOut = 0;
 	if (temp < -20)
 		tempOut = 0;
 	else if (temp > 234)
@@ -185,16 +185,16 @@ byte GamModule::setBinMsg_temp(int temp)
 	return tempOut;
 }
 
-void GamModule::setBinMsg_temperature1(int temp)
+void GamModule::setBinMsg_temperature1(uint8_t temp)
 {
 	hott_gam_msg->temperature1 = setBinMsg_temp(temp);
 }
 
-void GamModule::setBinMsg_temperature2(int temp)
+void GamModule::setBinMsg_temperature2(uint8_t temp)
 {
 	hott_gam_msg->temperature2 = setBinMsg_temp(temp);
 }
-void GamModule::setBinMsg_fuelPercent(byte fuelPercent)
+void GamModule::setBinMsg_fuelPercent(char fuelPercent)
 {
 	hott_gam_msg->fuel_percent = fuelPercent;
 }
@@ -246,10 +246,10 @@ void GamModule::setBinMsg_speed(uint16_t speed)
 
 void GamModule::setBinMsg_minCellVoltage(uint16_t voltage)
 {
-	hott_gam_msg->min_cell_volt = byte(round(voltage / 0.02));
+	hott_gam_msg->min_cell_volt = char(round(voltage / 0.02));
 }
 
-void GamModule::setBinMsg_minCellVoltageNumber(byte cell)
+void GamModule::setBinMsg_minCellVoltageNumber(char cell)
 {
 	hott_gam_msg->min_cell_volt_num = cell;
 }
@@ -261,7 +261,7 @@ void GamModule::setBinMsg_rpm2(uint16_t rpm)
 
 void GamModule::setBinMsg_pressure_in_bar(float pressure)
 {
-	hott_gam_msg->pressure_in_bar = byte(pressure / 0.1);
+	hott_gam_msg->pressure_in_bar = char(pressure / 0.1);
 }
 
 void GamModule::set_InvAlarm_allCellvoltage()
@@ -368,7 +368,7 @@ void GamModule::createBinMessage()
 			timeLastMessageSend = millis();
 		}
 
-		for (int i = 0; i <= 5; i++)
+		for (uint8_t i = 0; i <= 5; i++)
 		{
 			setBinMsg_cellVotlage(i, 4.2);
 		}
@@ -468,9 +468,9 @@ void GamModule::createBinMessage()
 }
 
 
-void GamModule::createTxtMessage(byte keyId)
+void GamModule::createTxtMessage(char keyId)
 {
-	/*int number = 12;
+	/*uint8_t number = 12;
 	float number_float = 123445.1;*/
 
 	currentPage->callPage(keyId);
@@ -478,7 +478,7 @@ void GamModule::createTxtMessage(byte keyId)
 }
 
 
-int GamModule::getBinMessageSize()
+uint8_t GamModule::getBinMessageSize()
 {
 	return sizeof(HOTT_GAM_MSG);
 }

@@ -10,13 +10,13 @@ class SensorAlarm : public Value<T> {
 private:
 	bool alarmTone;
 	bool maxAlarm; //true, else it is a minAlarm
-	byte alarmType;
+	char alarmType;
 	void triggerAlarm();
 	HottModule* moduleObject;
 
 public:
 	SensorAlarm();
-	SensorAlarm(const char* _name,HottModule* _moduleObject ,byte _alarmType = ALARM_OFF, bool _maxAlarm = false);
+	SensorAlarm(const char* _name,HottModule* _moduleObject ,char _alarmType = ALARM_OFF, bool _maxAlarm = false);
 	~SensorAlarm();
 	void toggleAlarmTone();
 	void loadAlarm();
@@ -37,7 +37,7 @@ SensorAlarm<T>::SensorAlarm()
 }
 
 template <class T>
-SensorAlarm<T>::SensorAlarm(const char* _name,HottModule* _moduleObject ,byte _alarmType, bool _maxAlarm):Value<T>(_name)
+SensorAlarm<T>::SensorAlarm(const char* _name,HottModule* _moduleObject ,char _alarmType, bool _maxAlarm):Value<T>(_name)
 {
 	alarmType = _alarmType;
 	maxAlarm = _maxAlarm;

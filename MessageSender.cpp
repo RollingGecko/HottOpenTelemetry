@@ -118,14 +118,14 @@ char * HottMessage::_hott_invert_all_chars(char *str) {
 
 
 
-void HottMessage::send(uint8_t * serialBuffer, int lenght)
+void HottMessage::send(uint8_t * serialBuffer, uint8_t lenght)
 {
 	uint8_t sum = 0;
 	delay(5);
-	/*for (int i = 0; i < lenght - 1; i++) {
+	/*for (uint8_t i = 0; i < lenght - 1; i++) {
 		Serial.print("Out: "); Serial.println(serialBuffer[i]);
 	}*/
-	for (int i = 0; i < lenght - 1; i++) {
+	for (uint8_t i = 0; i < lenght - 1; i++) {
 		sum = sum + serialBuffer[i];
 		HottSerialPort->write(serialBuffer[i]);
 		delayMicroseconds(HOTTV4_TX_DELAY);
@@ -140,9 +140,9 @@ void HottMessage::send(uint8_t * serialBuffer, int lenght)
 }
 
 
-void HottMessage::_hott_invert_ligne(int ligne) {
+void HottMessage::_hott_invert_ligne(uint8_t ligne) {
   if (ligne>= 0 && ligne<= 7)
-    for(int i=0; i< 21; i++) {
+    for(uint8_t i=0; i< 21; i++) {
       if (hott_txt_msg->text[ligne][i] == 0)   //inversion du caratère null (fin de string)
         hott_txt_msg->text[ligne][i] = (byte)(0x80 + 0x20);
       else
@@ -150,11 +150,11 @@ void HottMessage::_hott_invert_ligne(int ligne) {
     }
 }
 
-char * HottMessage::_hott_invert_chars(char *str, int cnt) {
+char * HottMessage::_hott_invert_chars(char *str, uint8_t cnt) {
 	if (str == 0) return str;
-	int len = strlen(str);
+	uint8_t len = strlen(str);
 	if ((len < cnt) && cnt > 0) len = cnt;
-	for (int i = 0; i < len; i++) {
+	for (uint8_t i = 0; i < len; i++) {
 		str[i] = (byte)(0x80 + (byte)str[i]);
 	}
 	return str;

@@ -13,17 +13,17 @@
 class Page;
 
 struct HOTT_TEXTMODE_MSG {
-	byte start_byte;			//#01 Starting constant value == 0x7b
-	byte esc;				//#02 Escape (higher-ranking menu in text mode or Text mode leave)
+	char start_byte;			//#01 Starting constant value == 0x7b
+	char esc;				//#02 Escape (higher-ranking menu in text mode or Text mode leave)
 						  //0x00 to stay normal
 						  //0x01 to exit
-						  //I will send 2 times, so the ESCAPE works really well, so two data frames with 0x01 in byte 2
-	byte warning_beeps;			//#03 1=A 2=B ...
-	byte text[8][21];			//#04...#171 168 ASCII text to display to
+						  //I will send 2 times, so the ESCAPE works really well, so two data frames with 0x01 in char 2
+	char warning_beeps;			//#03 1=A 2=B ...
+	char text[8][21];			//#04...#171 168 ASCII text to display to
 						  // Bit 7 = 1 -> Inverse character display
 						  // Display 21x8
-	byte stop_byte;		        //#172 constant value 0x7d
-	byte parity;				//#173 Checksum / parity
+	char stop_byte;		        //#172 constant value 0x7d
+	char parity;				//#173 Checksum / parity
 };
 
 // String for text mode
@@ -41,7 +41,7 @@ protected:
 	struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)serialTxtMessage;
 	bool dummyMessage = false;
 	void cleanTxtMessage();
-	virtual void set_Alert(byte alarm) = 0;
+	virtual void set_Alert(char alarm) = 0;
 
 	 
 	
@@ -51,11 +51,11 @@ public:
 	virtual void init_BinMsg() = 0;
 	virtual void initTxtMsg();
 	virtual void createBinMessage() = 0;
-	virtual void createTxtMessage(byte keyId) = 0;
-	virtual int getBinMessageSize() = 0;
+	virtual void createTxtMessage(char keyId) = 0;
+	virtual uint8_t getBinMessageSize() = 0;
 	uint8_t* getBinMessage();
 	uint8_t* getTxtMessage();
-	int getTxtMessageSize();
+	uint8_t getTxtMessageSize();
 	void setCurrentPage(Page* _page);
 	void setDummyMessage(bool onOff);
 };
@@ -73,16 +73,16 @@ private:
 
 protected:
    	  
-	void set_Alert(byte alarm);
-	void set_alarminvers1(byte alarm);
-	void set_alarminvers2(byte alarm);
+	void set_Alert(char alarm);
+	void set_alarminvers1(char alarm);
+	void set_alarminvers2(char alarm);
 	void setBinMsg_cellVotlage(uint8_t cell, float voltage);
 	void setBinMsg_Battery1(float voltage);
 	void setBinMsg_Battery2(float voltage);
-	byte setBinMsg_temp(int temp);
-	void setBinMsg_temperature1(int temp);
-	void setBinMsg_temperature2(int temp);
-	void setBinMsg_fuelPercent(byte fuelPercent);
+	char setBinMsg_temp(uint8_t temp);
+	void setBinMsg_temperature1(uint8_t temp);
+	void setBinMsg_temperature2(uint8_t temp);
+	void setBinMsg_fuelPercent(char fuelPercent);
 	void setBinMsg_fuelMl(uint16_t fuelMl);
 	void setBinMsg_rpm(uint16_t rpm);
 	void setBinMsg_altitude(uint16_t altitude);
@@ -93,7 +93,7 @@ protected:
 	void setBinMsg_battCap(uint16_t capacitiy);
 	void setBinMsg_speed(uint16_t speed);
 	void setBinMsg_minCellVoltage(uint16_t voltage);
-	void setBinMsg_minCellVoltageNumber(byte cell);
+	void setBinMsg_minCellVoltageNumber(char cell);
 	void setBinMsg_rpm2(uint16_t rpm);
 	void setBinMsg_pressure_in_bar(float pressure);
 	void set_InvAlarm_allCellvoltage();
@@ -118,15 +118,15 @@ public:
 		, bool _current, bool _voltageMain, bool _batCap, bool _speed, bool _minVolCelNum, bool _rpm2
 		, bool _pressure);
 	virtual void createBinMessage() override;
-	virtual int getBinMessageSize() override;
-	virtual void createTxtMessage(byte keyId) override;
+	virtual uint8_t getBinMessageSize() override;
+	virtual void createTxtMessage(char keyId) override;
 	virtual void init_BinMsg() override;
 	SensorValue<float>*		cellVoltage; //ToDo: Bring an array of values in this object 
 	SensorValue<float>*		battery1;
 	SensorValue<float>*		battery2;
-	SensorValue<byte>*		temperature1;
-	SensorValue<byte>*		temperature2;
-	SensorValue<byte>*		fuelPercentage;
+	SensorValue<char>*		temperature1;
+	SensorValue<char>*		temperature2;
+	SensorValue<char>*		fuelPercentage;
 	SensorValue<uint16_t>*	fuelMl;
 	SensorValue<uint16_t>*	rpm;
 	SensorValue<uint16_t>*	altitude;
@@ -136,16 +136,16 @@ public:
 	SensorValue<float>*		voltageMain;
 	SensorValue<uint16_t>*	batteryCapacity;
 	SensorValue<uint16_t>*	speed;
-	SensorValue<byte>*		minVoltageCellNumber;
+	SensorValue<char>*		minVoltageCellNumber;
 	SensorValue<uint16_t>*	rpm2;
 	SensorValue<float>*		pressure;
 	//void set_cellVotlage(uint8_t cell, float voltage);
 	//void set_Battery1(float voltage);
 	//void set_Battery2(float voltage);
-	//byte set_temp(int temp);
-	//void set_temperature1(int temp);
-	//void set_temperature2(int temp);
-	//void set_fuelPercent(byte fuelPercent);
+	//char set_temp(uint8_t temp);
+	//void set_temperature1(uint8_t temp);
+	//void set_temperature2(uint8_t temp);
+	//void set_fuelPercent(char fuelPercent);
 	//void set_fuelMl(uint16_t fuelMl);
 	//void set_rpm(uint16_t rpm);
 	//void set_altitude(uint16_t altitude);
@@ -156,7 +156,7 @@ public:
 	//void set_battCap(uint16_t capacitiy);
 	//void set_speed(uint16_t speed);
 	//void set_minCellVoltage(uint16_t voltage);
-	//void set_minCellVoltageNumber(byte cell);
+	//void set_minCellVoltageNumber(char cell);
 	//void set_rpm2(uint16_t rpm);
 	//void set_pressure_in_bar(float pressure);
 };

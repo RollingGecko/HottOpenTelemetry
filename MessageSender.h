@@ -44,17 +44,17 @@ HottOpenTelemetry
 
 // TEXT MODE STRUCTURE
 //struct HOTT_TEXTMODE_MSG {
-//  byte start_byte;			//#01 Starting constant value == 0x7b
-//  byte esc;				//#02 Escape (higher-ranking menu in text mode or Text mode leave)
+//  char start_byte;			//#01 Starting constant value == 0x7b
+//  char esc;				//#02 Escape (higher-ranking menu in text mode or Text mode leave)
 //						//0x00 to stay normal
 //						//0x01 to exit
-//						//I will send 2 times, so the ESCAPE works really well, so two data frames with 0x01 in byte 2
-//  byte warning_beeps;			//#03 1=A 2=B ...
-//  byte text[8][21];			//#04...#171 168 ASCII text to display to
+//						//I will send 2 times, so the ESCAPE works really well, so two data frames with 0x01 in char 2
+//  char warning_beeps;			//#03 1=A 2=B ...
+//  char text[8][21];			//#04...#171 168 ASCII text to display to
 //						// Bit 7 = 1 -> Inverse character display
 //						// Display 21x8
-//  byte stop_byte;		        //#172 constant value 0x7d
-//  byte parity;				//#173 Checksum / parity
+//  char stop_byte;		        //#172 constant value 0x7d
+//  char parity;				//#173 Checksum / parity
 //};
 
 
@@ -67,9 +67,9 @@ private:
 
 	  //void send_text_msg();
 	  char * _hott_invert_all_chars(char *str);
-	  char * _hott_invert_chars(char *str, int cnt);
-	  void send(uint8_t* serialBuffer, int lenght);
-	  void _hott_invert_ligne(int ligne);
+	  char * _hott_invert_chars(char *str, uint8_t cnt);
+	  void send(uint8_t* serialBuffer, uint8_t lenght);
+	  void _hott_invert_ligne(uint8_t ligne);
 
 
 public:
