@@ -27,7 +27,7 @@ public:
 template <class T>
 void SensorAlarm<T>::triggerAlarm()
 {
-	HottModule.set_Alert(alarmType);
+//	HottModule->set_Alert(alarmType); //ToDo Build error
 }
 
 template <class T>
