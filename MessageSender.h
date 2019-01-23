@@ -67,9 +67,9 @@ private:
 
 	  //void send_text_msg();
 	  char * _hott_invert_all_chars(char *str);
-	  char * _hott_invert_chars(char *str, uint8_t cnt);
-	  void send(uint8_t* serialBuffer, uint8_t lenght);
-	  void _hott_invert_ligne(uint8_t ligne);
+	  char * _hott_invert_chars(char *str, int cnt);
+	  void send(int* serialBuffer, int lenght);
+	  void _hott_invert_ligne(int ligne);
 
 
 public:

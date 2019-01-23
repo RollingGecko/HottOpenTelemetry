@@ -118,8 +118,8 @@ struct gam_values {
 	uint16_t cell[6];					// Volt Cell 1-6 [div 10]
 	uint16_t  Battery1;					//battery 1 voltage [div 10]
 	uint16_t Battery2;					//battery 2 voltage [div 10]
-	uint8_t temperature1;
-	uint8_t temperature2;
+	int temperature1;
+	int temperature2;
 	char fuel_percent;               										  //graphical display ranges: 0-100% with new firmwares of the radios MX12/MX20/...
 	uint16_t fuel_ml;
 	uint16_t rpm;

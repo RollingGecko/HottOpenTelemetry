@@ -28,7 +28,7 @@ SensorValue<T>::SensorValue(const char* _name, HottModule* _moduleObject, char _
 {
 	/*const char* namePostfixMin = "MinAl";
 	const char* namePostfixMax = "MaxAl";
-	uint8_t sizeName = strlen(_name)+ strlen(namePostfixMin);
+	int sizeName = strlen(_name)+ strlen(namePostfixMin);
 	
 	char dumpMin[sizeName];
 	

@@ -18,11 +18,11 @@ private:
 	Page* nextPage = 0;
 	void createPage();
 	void defineModule(HottModule* _module);
-	inline void printLine(uint8_t _Line, const char* _Title, uint8_t _variable);
-	//inline void printLine(uint8_t _Line, const char* _Title, float _variable); //ToDo: Überladung klappt nicht. Aber erst nach Umstellung auf uint8_t
-	inline void printLine(uint8_t _Line, const char* _Title, const char* _variable);
-	inline void printLine(uint8_t _Line, uint8_t _centerSpaces, const char* _Title);
-	inline void printLine(uint8_t _Line, const char * _Title, char * _variable, bool _invVariable);
+	inline void printLine(int _Line, const char* _Title, int _variable);
+	//inline void printLine(int _Line, const char* _Title, float _variable); //ToDo: Überladung klappt nicht. Aber erst nach Umstellung auf int
+	inline void printLine(int _Line, const char* _Title, const char* _variable);
+	inline void printLine(int _Line, int _centerSpaces, const char* _Title);
+	inline void printLine(int _Line, const char * _Title, char * _variable, bool _invVariable);
 
 
 protected:	

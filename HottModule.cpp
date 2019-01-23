@@ -35,17 +35,17 @@ void HottModule::initTxtMsg()
 }
 
 
-uint8_t* HottModule::getBinMessage()
+int* HottModule::getBinMessage()
 {
 	return serialBinMessage;
 }
 
-uint8_t * HottModule::getTxtMessage()
+int * HottModule::getTxtMessage()
 {
 	return serialTxtMessage;
 }
 
-uint8_t HottModule::getTxtMessageSize()
+int HottModule::getTxtMessageSize()
 {
 	return sizeof(serialTxtMessage);
 }
@@ -158,24 +158,24 @@ void GamModule::init_BinMsg()
 	hott_gam_msg->stop_byte = 0x7d;
 }
 
-void GamModule::setBinMsg_cellVotlage(uint8_t cell, float voltage)
+void GamModule::setBinMsg_cellVotlage(int cell, float voltage)
 {
 		hott_gam_msg->cell[cell] = char(round(voltage / 0.02));
 	}
 
 void GamModule::setBinMsg_Battery1(float voltage)
 {
-	hott_gam_msg->Battery1 = uint8_t(round(voltage / 0.1));
+	hott_gam_msg->Battery1 = int(round(voltage / 0.1));
 }
 
 void GamModule::setBinMsg_Battery2(float voltage)
 {
-	hott_gam_msg->Battery2 = uint8_t(round(voltage / 0.1));
+	hott_gam_msg->Battery2 = int(round(voltage / 0.1));
 }
 
-char GamModule::setBinMsg_temp(uint8_t temp)
+char GamModule::setBinMsg_temp(int temp)
 {
-	uint8_t tempOut = 0;
+	int tempOut = 0;
 	if (temp < -20)
 		tempOut = 0;
 	else if (temp > 234)
@@ -185,12 +185,12 @@ char GamModule::setBinMsg_temp(uint8_t temp)
 	return tempOut;
 }
 
-void GamModule::setBinMsg_temperature1(uint8_t temp)
+void GamModule::setBinMsg_temperature1(int temp)
 {
 	hott_gam_msg->temperature1 = setBinMsg_temp(temp);
 }
 
-void GamModule::setBinMsg_temperature2(uint8_t temp)
+void GamModule::setBinMsg_temperature2(int temp)
 {
 	hott_gam_msg->temperature2 = setBinMsg_temp(temp);
 }
@@ -368,7 +368,7 @@ void GamModule::createBinMessage()
 			timeLastMessageSend = millis();
 		}
 
-		for (uint8_t i = 0; i <= 5; i++)
+		for (int i = 0; i <= 5; i++)
 		{
 			setBinMsg_cellVotlage(i, 4.2);
 		}
@@ -470,7 +470,7 @@ void GamModule::createBinMessage()
 
 void GamModule::createTxtMessage(char keyId)
 {
-	/*uint8_t number = 12;
+	/*int number = 12;
 	float number_float = 123445.1;*/
 
 	currentPage->callPage(keyId);
@@ -478,7 +478,7 @@ void GamModule::createTxtMessage(char keyId)
 }
 
 
-uint8_t GamModule::getBinMessageSize()
+int GamModule::getBinMessageSize()
 {
 	return sizeof(HOTT_GAM_MSG);
 }

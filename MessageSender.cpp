@@ -11,14 +11,14 @@ HottOpenTelemetry
 
 //SoftwareSerial HottSerialPort(8,9); // RX, TX
 
-static uint8_t _hott_serial_buffer[173];   //création d'une variable tampon pour stocker les struct
+static int _hott_serial_buffer[173];   //création d'une variable tampon pour stocker les struct
 
 // pointer des structures vers le tampon "_hott_serial_buffer"
 struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)&_hott_serial_buffer[0];
 
 // For communication
-static uint8_t octet1 = 0;  // reception
-static uint8_t octet2 = 0;  // reception
+static int octet1 = 0;  // reception
+static int octet2 = 0;  // reception
 boolean mode_text = 0;
 
 HottMessage::HottMessage():HottSerialPort(NULL), gamModule(NULL){
@@ -51,11 +51,11 @@ void HottMessage::sendMessage(){
   
   if(HottSerialPort->available() >= 2) {
     
-    uint8_t octet1 = HottSerialPort->read();
+    int octet1 = HottSerialPort->read();
     switch (octet1) {
     case HOTT_BINARY_MODE_REQUEST_ID:
       { 
-        uint8_t  octet2 = HottSerialPort->read();
+        int  octet2 = HottSerialPort->read();
         
         // Demande RX Module =	$80 $XX
         switch (octet2) {
@@ -86,7 +86,7 @@ void HottMessage::sendMessage(){
     case HOTT_TEXT_MODE_REQUEST_ID:
       {
       //  mode_text = 1;
-       uint8_t  octet3 = HottSerialPort->read();
+       int  octet3 = HottSerialPort->read();
 		   
 	   //Lower octet3 Bits representing Sensor
         byte id_sensor = (octet3 >> 4);
@@ -118,14 +118,14 @@ char * HottMessage::_hott_invert_all_chars(char *str) {
 
 
 
-void HottMessage::send(uint8_t * serialBuffer, uint8_t lenght)
+void HottMessage::send(int * serialBuffer, int lenght)
 {
-	uint8_t sum = 0;
+	int sum = 0;
 	delay(5);
-	/*for (uint8_t i = 0; i < lenght - 1; i++) {
+	/*for (int i = 0; i < lenght - 1; i++) {
 		Serial.print("Out: "); Serial.println(serialBuffer[i]);
 	}*/
-	for (uint8_t i = 0; i < lenght - 1; i++) {
+	for (int i = 0; i < lenght - 1; i++) {
 		sum = sum + serialBuffer[i];
 		HottSerialPort->write(serialBuffer[i]);
 		delayMicroseconds(HOTTV4_TX_DELAY);
@@ -140,9 +140,9 @@ void HottMessage::send(uint8_t * serialBuffer, uint8_t lenght)
 }
 
 
-void HottMessage::_hott_invert_ligne(uint8_t ligne) {
+void HottMessage::_hott_invert_ligne(int ligne) {
   if (ligne>= 0 && ligne<= 7)
-    for(uint8_t i=0; i< 21; i++) {
+    for(int i=0; i< 21; i++) {
       if (hott_txt_msg->text[ligne][i] == 0)   //inversion du caratère null (fin de string)
         hott_txt_msg->text[ligne][i] = (byte)(0x80 + 0x20);
       else
@@ -150,11 +150,11 @@ void HottMessage::_hott_invert_ligne(uint8_t ligne) {
     }
 }
 
-char * HottMessage::_hott_invert_chars(char *str, uint8_t cnt) {
+char * HottMessage::_hott_invert_chars(char *str, int cnt) {
 	if (str == 0) return str;
-	uint8_t len = strlen(str);
+	int len = strlen(str);
 	if ((len < cnt) && cnt > 0) len = cnt;
-	for (uint8_t i = 0; i < len; i++) {
+	for (int i = 0; i < len; i++) {
 		str[i] = (byte)(0x80 + (byte)str[i]);
 	}
 	return str;

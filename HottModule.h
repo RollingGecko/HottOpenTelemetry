@@ -36,8 +36,8 @@ private:
 	
 protected:
 	Page* currentPage;
-	uint8_t serialBinMessage[178];
-	uint8_t serialTxtMessage[173];
+	int serialBinMessage[178];
+	int serialTxtMessage[173];
 	struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)serialTxtMessage;
 	bool dummyMessage = false;
 	void cleanTxtMessage();
@@ -52,10 +52,10 @@ public:
 	virtual void initTxtMsg();
 	virtual void createBinMessage() = 0;
 	virtual void createTxtMessage(char keyId) = 0;
-	virtual uint8_t getBinMessageSize() = 0;
-	uint8_t* getBinMessage();
-	uint8_t* getTxtMessage();
-	uint8_t getTxtMessageSize();
+	virtual int getBinMessageSize() = 0;
+	int* getBinMessage();
+	int* getTxtMessage();
+	int getTxtMessageSize();
 	void setCurrentPage(Page* _page);
 	void setDummyMessage(bool onOff);
 };
@@ -76,12 +76,12 @@ protected:
 	void set_Alert(char alarm);
 	void set_alarminvers1(char alarm);
 	void set_alarminvers2(char alarm);
-	void setBinMsg_cellVotlage(uint8_t cell, float voltage);
+	void setBinMsg_cellVotlage(int cell, float voltage);
 	void setBinMsg_Battery1(float voltage);
 	void setBinMsg_Battery2(float voltage);
-	char setBinMsg_temp(uint8_t temp);
-	void setBinMsg_temperature1(uint8_t temp);
-	void setBinMsg_temperature2(uint8_t temp);
+	char setBinMsg_temp(int temp);
+	void setBinMsg_temperature1(int temp);
+	void setBinMsg_temperature2(int temp);
 	void setBinMsg_fuelPercent(char fuelPercent);
 	void setBinMsg_fuelMl(uint16_t fuelMl);
 	void setBinMsg_rpm(uint16_t rpm);
@@ -118,7 +118,7 @@ public:
 		, bool _current, bool _voltageMain, bool _batCap, bool _speed, bool _minVolCelNum, bool _rpm2
 		, bool _pressure);
 	virtual void createBinMessage() override;
-	virtual uint8_t getBinMessageSize() override;
+	virtual int getBinMessageSize() override;
 	virtual void createTxtMessage(char keyId) override;
 	virtual void init_BinMsg() override;
 	SensorValue<float>*		cellVoltage; //ToDo: Bring an array of values in this object 
@@ -139,12 +139,12 @@ public:
 	SensorValue<char>*		minVoltageCellNumber;
 	SensorValue<uint16_t>*	rpm2;
 	SensorValue<float>*		pressure;
-	//void set_cellVotlage(uint8_t cell, float voltage);
+	//void set_cellVotlage(int cell, float voltage);
 	//void set_Battery1(float voltage);
 	//void set_Battery2(float voltage);
-	//char set_temp(uint8_t temp);
-	//void set_temperature1(uint8_t temp);
-	//void set_temperature2(uint8_t temp);
+	//char set_temp(int temp);
+	//void set_temperature1(int temp);
+	//void set_temperature2(int temp);
 	//void set_fuelPercent(char fuelPercent);
 	//void set_fuelMl(uint16_t fuelMl);
 	//void set_rpm(uint16_t rpm);
