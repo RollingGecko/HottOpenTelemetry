@@ -4,6 +4,7 @@
 #include "ModuleDefines.h"
 #include "HottModule.h"
 
+
 template <class T>
 class SensorValue : public Value<T> {
 private:
@@ -12,7 +13,8 @@ public:
 	SensorValue();
 	SensorValue(const char* _name, HottModule* _moduleObject, uint8_t _alarmTypeMin = ALARM_OFF, uint8_t _alarmTypeMax = ALARM_OFF);
 	~SensorValue();
-		SensorAlarm<T>* minAlarm;
+
+	SensorAlarm<T>* minAlarm;
 	SensorAlarm<T>* maxAlarm;
 
 };
