@@ -31,7 +31,7 @@ protected:
 
 
 public:
-	Page::Page(char * _title, HottModule* _module);
+	Page(char * _title, HottModule* _module);
 	virtual ~Page();
 	void setPrevious(Page* _page);
 	void setNext(Page* _page);
