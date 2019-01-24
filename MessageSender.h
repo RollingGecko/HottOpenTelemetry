@@ -44,17 +44,17 @@ HottOpenTelemetry
 
 // TEXT MODE STRUCTURE
 //struct HOTT_TEXTMODE_MSG {
-//  byte start_byte;			//#01 Starting constant value == 0x7b
-//  byte esc;				//#02 Escape (higher-ranking menu in text mode or Text mode leave)
+//  uint8_t start_byte;			//#01 Starting constant value == 0x7b
+//  uint8_t esc;				//#02 Escape (higher-ranking menu in text mode or Text mode leave)
 //						//0x00 to stay normal
 //						//0x01 to exit
-//						//I will send 2 times, so the ESCAPE works really well, so two data frames with 0x01 in byte 2
-//  byte warning_beeps;			//#03 1=A 2=B ...
-//  byte text[8][21];			//#04...#171 168 ASCII text to display to
+//						//I will send 2 times, so the ESCAPE works really well, so two data frames with 0x01 in uint8_t 2
+//  uint8_t warning_beeps;			//#03 1=A 2=B ...
+//  uint8_t text[8][21];			//#04...#171 168 ASCII text to display to
 //						// Bit 7 = 1 -> Inverse character display
 //						// Display 21x8
-//  byte stop_byte;		        //#172 constant value 0x7d
-//  byte parity;				//#173 Checksum / parity
+//  uint8_t stop_byte;		        //#172 constant value 0x7d
+//  uint8_t parity;				//#173 Checksum / parity
 //};
 
 

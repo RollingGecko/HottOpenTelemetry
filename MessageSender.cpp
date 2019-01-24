@@ -47,7 +47,7 @@ void HottMessage::init(){
 void HottMessage::sendMessage(){ 
 	
   // STARTING MAIN PROGRAM LIPOMETRE
-  static byte page_settings = 1;//numéro de la page de settings à afficher
+  static uint8_t page_settings = 1;//numéro de la page de settings à afficher
   
   if(HottSerialPort->available() >= 2) {
     
@@ -89,10 +89,10 @@ void HottMessage::sendMessage(){
        uint8_t  octet3 = HottSerialPort->read();
 		   
 	   //Lower octet3 Bits representing Sensor
-        byte id_sensor = (octet3 >> 4);
+        uint8_t id_sensor = (octet3 >> 4);
 				
 		//Higher octet3 Bits representing Key Information
-        byte id_key = octet3 & 0x0f;
+        uint8_t id_key = octet3 & 0x0f;
 
 		gamModule->initTxtMsg();
 		//Text mode General  Air Module
@@ -144,9 +144,9 @@ void HottMessage::_hott_invert_ligne(int ligne) {
   if (ligne>= 0 && ligne<= 7)
     for(int i=0; i< 21; i++) {
       if (hott_txt_msg->text[ligne][i] == 0)   //inversion du caratère null (fin de string)
-        hott_txt_msg->text[ligne][i] = (byte)(0x80 + 0x20);
+        hott_txt_msg->text[ligne][i] = (uint8_t)(0x80 + 0x20);
       else
-        hott_txt_msg->text[ligne][i] = (byte)(0x80 + (byte)hott_txt_msg->text[ligne][i]);
+        hott_txt_msg->text[ligne][i] = (uint8_t)(0x80 + (uint8_t)hott_txt_msg->text[ligne][i]);
     }
 }
 
@@ -155,7 +155,7 @@ char * HottMessage::_hott_invert_chars(char *str, int cnt) {
 	int len = strlen(str);
 	if ((len < cnt) && cnt > 0) len = cnt;
 	for (int i = 0; i < len; i++) {
-		str[i] = (byte)(0x80 + (byte)str[i]);
+		str[i] = (uint8_t)(0x80 + (uint8_t)str[i]);
 	}
 	return str;
 }

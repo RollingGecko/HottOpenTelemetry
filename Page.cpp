@@ -3,7 +3,7 @@
 
 #include "MessageSender.h"
 
-void Page::onKeyAction(byte keyId)
+void Page::onKeyAction(uint8_t keyId)
 {
 	switch (keyId)
 	{
@@ -30,7 +30,7 @@ char * Page::invertChars(char * str)
 	int len = strlen(str);
 	//if ((len < cnt) && cnt > 0) len = cnt;
 	for (int i = 0; i < len; i++) {
-		str[i] = (byte)(0x80 + (byte)str[i]);
+		str[i] = (uint8_t)(0x80 + (uint8_t)str[i]);
 	}
 	return str;
 }
@@ -62,7 +62,7 @@ void Page::callPage()
 	createPage();
 }
 
-void Page::callPage(byte keyId)
+void Page::callPage(uint8_t keyId)
 {
 	onKeyAction(keyId);
 	createPage();
