@@ -4,17 +4,21 @@
  Author:	AC
 */
 
-#include "SEnsorValue.h"
-#define DEBUG
+#include "Arduino.h"
+#include "SensorValue.h"
+#include "HottModule.h"
 
 // the setup function runs once when you press reset or power the board
 SensorValue<int>* sensor;
+GamModule* hottmodule;
 
 void setup() {
 	Serial.begin(115200);
-	sensor = new SensorValue<int>("Sens1");
-	Serial.print("getMinAlarm: "); Serial.println(sensor->minAlarm->getName());
-	Serial.print("getMaxAlarm: "); Serial.println(sensor->maxAlarm->getName());
+	sensor = new SensorValue<int>("Sens1",hottmodule);
+	hottmodule = new GamModule();
+	hottmodule->initSensors(false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false, false);
+	/*Serial.print("getMinAlarm: "); Serial.println(sensor->minAlarm->getName());
+	Serial.print("getMaxAlarm: "); Serial.println(sensor->maxAlarm->getName());*/
 
 
 }
