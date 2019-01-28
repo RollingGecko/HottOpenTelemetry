@@ -1,4 +1,10 @@
 #pragma once
+#ifndef SEnsorValue_h__
+#define SEnsorValue_h__
+
+
+
+
 #include "Value.h"
 #include "SensorAlarm.h"
 #include "ModuleDefines.h"
@@ -7,8 +13,6 @@
 
 template <class T>
 class SensorValue : public Value<T> {
-private:
-
 public:
 	SensorValue();
 	SensorValue(const char* _name, HottModule* _moduleObject, uint8_t _alarmTypeMin = ALARM_OFF, uint8_t _alarmTypeMax = ALARM_OFF);
@@ -19,11 +23,11 @@ public:
 
 };
 
-//template <class T>
-//SensorValue<T>::SensorValue()
-//{
-//
-//}
+template <class T>
+SensorValue<T>::SensorValue()
+{
+
+}
 
 template <class T>
 SensorValue<T>::SensorValue(const char* _name, HottModule* _moduleObject, uint8_t _alarmTypeMin, uint8_t _alarmTypeMax):Value<T>(_name)
@@ -55,3 +59,4 @@ SensorValue<T>::~SensorValue()
 
 }
 
+#endif // SEnsorValue_h__

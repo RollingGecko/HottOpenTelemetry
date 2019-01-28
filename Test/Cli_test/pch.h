@@ -14,8 +14,8 @@
 
 
 #pragma warning( push )
-#pragma warning(disable : 4430)
-#pragma warning(disable : 2146)
-#pragma warning(disable : 2059)
+//#pragma warning(disable : 4430)
+//#pragma warning(disable : 2146)
+//#pragma warning(disable : 2059)
 
 #endif //PCH_H

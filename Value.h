@@ -1,5 +1,8 @@
 #pragma once
 
+#ifndef Value_h__
+#define Value_h__
+
 
 template <class T>
 class Value
@@ -20,32 +23,32 @@ template <class T>
 Value<T>::Value(const char* _name)
 {
 	valueName = _name;
-}
+};
 
 template <class T>
 Value<T>::~Value()
 {
-}
+};
 
 template<class T>
  void Value<T>::setValue(T _value)
  {
 	 value = _value;
-}
+ };
 
 template <class T>
 const char * Value<T>::getName()
 {
 	return valueName;
-}
+};
 
 template<class T>
 T  Value<T>::getValue()
 {
 	return value ;
-}
+};
 
-
+#endif // Value_h__
 
 
 

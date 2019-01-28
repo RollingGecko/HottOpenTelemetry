@@ -1,12 +1,14 @@
-#include "pch.h"
+//#include "pch.h"
+#include "D:\HiDrive\dev\BaseFiles\ARduino_1_5_1_libraries\libraries\HottOpenTelemetry\Value.h"
+#include "D:\HiDrive\dev\BaseFiles\ARduino_1_5_1_libraries\libraries\HottOpenTelemetry\SensorAlarm.h"
+#include "D:\HiDrive\dev\BaseFiles\ARduino_1_5_1_libraries\libraries\HottOpenTelemetry\HottModule.h"
+#include <gtest/gtest.h>
 //ToDo: Relative
 #define ModuleDefines_h__ //To not load specific file
 #define GTEST
 typedef unsigned char byte;
 
-#include "D:\HiDrive\dev\BaseFiles\ARduino_1_5_1_libraries\libraries\HottOpenTelemetry\Value.h"
-//#include "D:\HiDrive\dev\BaseFiles\ARduino_1_5_1_libraries\libraries\HottOpenTelemetry\SensorAlarm.h"
-//#include "D:\HiDrive\dev\BaseFiles\ARduino_1_5_1_libraries\libraries\HottOpenTelemetry\HottModule.h"
+
 
 //Testing Class Value
 

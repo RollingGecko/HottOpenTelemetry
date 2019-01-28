@@ -2,7 +2,7 @@
 
 #ifndef ModuleDefines_h__
 #define ModuleDefines_h__
-
+#include <stdint.h>
 #define HOTT_TELEMETRY_GEA_SENSOR_ID    0x8E // Electric Air Module ID
 #define HOTT_BINARY_MODE_REQUEST_ID		0x80
 #define HOTT_TEXT_MODE_REQUEST_ID       0x7f

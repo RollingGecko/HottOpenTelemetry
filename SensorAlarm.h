@@ -1,4 +1,9 @@
 #pragma once
+
+#ifndef SensorAlarm_h__
+#define SensorAlarm_h__
+
+
 #include "Value.h"
 #include "ModuleDefines.h"
 #include "HottModule.h"
@@ -55,3 +60,4 @@ inline void SensorAlarm<T>::toggleAlarmTone()
 	alarmTone = !alarmTone;
 }
 
+#endif // SensorAlarm_h__
