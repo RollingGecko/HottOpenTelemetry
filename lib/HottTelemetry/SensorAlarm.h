@@ -1,9 +1,15 @@
 #pragma once
 #include "Value.h"
 #ifndef UNIT_TEST
-#include "ModuleDefines.h"
+	#include "ModuleDefines.h"
+	#include "HottModule.h"
+#else
+	#include "HottModule_Mock.h"
+	#define HOTTMODULE_MOCKED
+	#include <stdint.h>
+	#define ALARM_OFF	0x00
 #endif
-#include "HottModule.h"
+
 
 class HottModule;
 
@@ -12,18 +18,19 @@ class SensorAlarm : public Value<T> {
 private:
 	bool alarmTone;
 	bool maxAlarm; //true, else it is a minAlarm
-	byte alarmType;
+	uint8_t alarmType;
 	void triggerAlarm();
 	HottModule* moduleObject;
 
 public:
 	SensorAlarm();
-	SensorAlarm(const char* _name,HottModule* _moduleObject ,byte _alarmType = ALARM_OFF, bool _maxAlarm = false);
+	SensorAlarm(const char* _name,HottModule* _moduleObject ,uint8_t _alarmType = ALARM_OFF, bool _maxAlarm = false);
 	~SensorAlarm();
 	void toggleAlarmTone();
 	void loadAlarm();
 	void saveAlarm();
 	bool checkAlarm(T _sensorValue);
+	bool getAlarmToneSetting();
 };
 
 template <class T>
@@ -39,7 +46,7 @@ SensorAlarm<T>::SensorAlarm()
 }
 
 template <class T>
-SensorAlarm<T>::SensorAlarm(const char* _name,HottModule* _moduleObject ,byte _alarmType, bool _maxAlarm):Value<T>(_name)
+SensorAlarm<T>::SensorAlarm(const char* _name,HottModule* _moduleObject ,uint8_t _alarmType, bool _maxAlarm):Value<T>(_name)
 {
 	alarmType = _alarmType;
 	maxAlarm = _maxAlarm;
@@ -56,4 +63,12 @@ inline void SensorAlarm<T>::toggleAlarmTone()
 {
 	alarmTone = !alarmTone;
 }
+
+template<class T>
+bool SensorAlarm<T>::getAlarmToneSetting()
+{
+	return alarmTone;
+}
+
+
 

@@ -1,3 +1,4 @@
+#ifndef UNIT_TEST
 #include "HottModule.h"
 
 #include "math.h"
@@ -483,3 +484,4 @@ int GamModule::getBinMessageSize()
 	return sizeof(HOTT_GAM_MSG);
 }
 
+#endif

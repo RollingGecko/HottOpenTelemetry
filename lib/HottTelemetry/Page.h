@@ -5,7 +5,7 @@
 
 
 #ifdef UNIT_TEST
-    #include "ArduinoFake.h"
+    #include <stdint.h>
 #else
     #include "Arduino.h"
 #endif
@@ -30,7 +30,7 @@ private:
 
 
 protected:	
-	virtual void onKeyAction(byte keyId);
+	virtual void onKeyAction(uint8_t keyId);
 	char * invertChars(char *str);
 
 
@@ -40,7 +40,7 @@ public:
 	void setPrevious(Page* _page);
 	void setNext(Page* _page);
 	virtual void callPage();
-	virtual void callPage(byte keyId);
+	virtual void callPage(uint8_t keyId);
 };
 
 #endif // Page_h__
