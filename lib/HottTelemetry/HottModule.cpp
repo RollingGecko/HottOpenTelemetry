@@ -56,84 +56,84 @@ void HottModule::setDummyMessage(bool onOff)
 	dummyMessage = onOff;
 }
 
-void GamModule::initSensors(bool _cellVoltage, bool _battery1, bool _battery2, bool _temp1, bool _temp2
-	, bool _fuelPerc, bool _fuelMl, bool _rpm, bool _alt, bool _climbL, bool _climb3s
-	, bool _current, bool _voltageMain, bool _batCap, bool _speed, bool _minVolCelNum, bool _rpm2
-	, bool _pressure)
-{
-	if (_cellVoltage)
-	{
-		cellVoltage = new SensorValue<float>("cellV",this,ALARM_MINCELLVOLTAGE);
-	}
-	if (_battery1)
-	{
-		battery1 = new SensorValue<float>("Bat1", this, ALARM_MINSENSVOL1, ALARM_MAXSENSVOL1);
-	}
-	if (_battery2)
-	{
-		battery2 = new SensorValue<float>("Bat2", this, ALARM_MINSENSVOL2, ALARM_MAXSENSVOL2);
-	}
-	if (_temp1)
-	{
-		temperature1 = new SensorValue<byte>("Temp1", this, ALARM_MINTEMP1, ALARM_MAXTEMP1);
-	}
-	if (_temp2)
-	{
-		temperature2 = new SensorValue<byte>("Temp2", this, ALARM_MINTEMP2, ALARM_MAXTEMP2);
-	}
-	if (_fuelPerc)
-	{
-		fuelPercentage = new SensorValue<byte>("Fuel%",this);
-	}
-	if (_fuelMl)
-	{
-		fuelMl = new SensorValue<uint16_t>("Fuel", this, ALARM_FUELRESERVE);
-	}
-	if (_rpm)
-	{
-		rpm = new SensorValue<uint16_t>("RPM", this, ALARM_MINRPM, ALARM_MAXRPM);
-	}
-	if (_alt)
-	{
-		altitude = new SensorValue<uint16_t>("Alt", this, ALARM_MINALT, ALARM_MAXALTITUDE);
-	}
-	if (_climbL)
-	{
-		climbrate_L = new SensorValue<float>("ClimbL", this, ALARM_OFF, ALARM_CLIMBRATE1);
-	}
-	if (_climb3s)
-	{
-		climbrate3s = new SensorValue<uint16_t>("Climb3s", this, ALARM_OFF, ALARM_OFF);
-	}
-	if (_current)
-	{
-		current = new SensorValue<float>("Cur", this, ALARM_OFF, ALARM_MAXCURRENT);
-	}
-	if (_voltageMain)
-	{
-		voltageMain = new SensorValue<float>("MainVol", this, ALARM_MINPOWVOLTAGE, ALARM_MAXPPOWVOLTAGE);
-	}
-	if (_batCap)
-	{
-		batteryCapacity = new SensorValue<uint16_t>("Cap", this, ALARM_OFF, ALARM_MAXUSEDCAPACITY);
-	}
-	if (_speed)
-	{
-		speed = new SensorValue<uint16_t>("Speed", this, ALARM_MINSPEED, ALARM_MAXSPEED);
-	}
-	if (_minVolCelNum)
-	{
-		minVoltageCellNumber = new SensorValue<byte>("MinVolCel", this, ALARM_OFF, ALARM_OFF);
-	}
-	if (_rpm2)
-	{
-		rpm2 = new SensorValue<uint16_t>("RPM2", this, ALARM_MINRPM, ALARM_MAXRPM);
-	}
-	if (_pressure)
-	{
-		pressure = new SensorValue<float>("Pressure", this, ALARM_OFF, ALARM_OFF);
-	}
-}
+// void GamModule::initSensors(bool _cellVoltage, bool _battery1, bool _battery2, bool _temp1, bool _temp2
+// 	, bool _fuelPerc, bool _fuelMl, bool _rpm, bool _alt, bool _climbL, bool _climb3s
+// 	, bool _current, bool _voltageMain, bool _batCap, bool _speed, bool _minVolCelNum, bool _rpm2
+// 	, bool _pressure)
+// {
+// 	if (_cellVoltage)
+// 	{
+// 		cellVoltage = new SensorValue<float>("cellV",this,ALARM_MINCELLVOLTAGE);
+// 	}
+// 	if (_battery1)
+// 	{
+// 		battery1 = new SensorValue<float>("Bat1", this, ALARM_MINSENSVOL1, ALARM_MAXSENSVOL1);
+// 	}
+// 	if (_battery2)
+// 	{
+// 		battery2 = new SensorValue<float>("Bat2", this, ALARM_MINSENSVOL2, ALARM_MAXSENSVOL2);
+// 	}
+// 	if (_temp1)
+// 	{
+// 		temperature1 = new SensorValue<byte>("Temp1", this, ALARM_MINTEMP1, ALARM_MAXTEMP1);
+// 	}
+// 	if (_temp2)
+// 	{
+// 		temperature2 = new SensorValue<byte>("Temp2", this, ALARM_MINTEMP2, ALARM_MAXTEMP2);
+// 	}
+// 	if (_fuelPerc)
+// 	{
+// 		fuelPercentage = new SensorValue<byte>("Fuel%",this);
+// 	}
+// 	if (_fuelMl)
+// 	{
+// 		fuelMl = new SensorValue<uint16_t>("Fuel", this, ALARM_FUELRESERVE);
+// 	}
+// 	if (_rpm)
+// 	{
+// 		rpm = new SensorValue<uint16_t>("RPM", this, ALARM_MINRPM, ALARM_MAXRPM);
+// 	}
+// 	if (_alt)
+// 	{
+// 		altitude = new SensorValue<uint16_t>("Alt", this, ALARM_MINALT, ALARM_MAXALTITUDE);
+// 	}
+// 	if (_climbL)
+// 	{
+// 		climbrate_L = new SensorValue<float>("ClimbL", this, ALARM_OFF, ALARM_CLIMBRATE1);
+// 	}
+// 	if (_climb3s)
+// 	{
+// 		climbrate3s = new SensorValue<uint16_t>("Climb3s", this, ALARM_OFF, ALARM_OFF);
+// 	}
+// 	if (_current)
+// 	{
+// 		current = new SensorValue<float>("Cur", this, ALARM_OFF, ALARM_MAXCURRENT);
+// 	}
+// 	if (_voltageMain)
+// 	{
+// 		voltageMain = new SensorValue<float>("MainVol", this, ALARM_MINPOWVOLTAGE, ALARM_MAXPPOWVOLTAGE);
+// 	}
+// 	if (_batCap)
+// 	{
+// 		batteryCapacity = new SensorValue<uint16_t>("Cap", this, ALARM_OFF, ALARM_MAXUSEDCAPACITY);
+// 	}
+// 	if (_speed)
+// 	{
+// 		speed = new SensorValue<uint16_t>("Speed", this, ALARM_MINSPEED, ALARM_MAXSPEED);
+// 	}
+// 	if (_minVolCelNum)
+// 	{
+// 		minVoltageCellNumber = new SensorValue<byte>("MinVolCel", this, ALARM_OFF, ALARM_OFF);
+// 	}
+// 	if (_rpm2)
+// 	{
+// 		rpm2 = new SensorValue<uint16_t>("RPM2", this, ALARM_MINRPM, ALARM_MAXRPM);
+// 	}
+// 	if (_pressure)
+// 	{
+// 		pressure = new SensorValue<float>("Pressure", this, ALARM_OFF, ALARM_OFF);
+// 	}
+// }
 
 void GamModule::set_Alert(byte alarm)
 {
@@ -393,77 +393,34 @@ void GamModule::createBinMessage()
 	}
 	else
 	{
-		if (battery1 != nullptr)
-		{
-			setBinMsg_Battery1(battery1->getValue());
-		}
-		if (battery2 != nullptr)
-		{
-			setBinMsg_Battery2(battery2->getValue());
-		}
-		if (temperature1 != nullptr)
-		{
-			setBinMsg_temperature1(temperature1->getValue());
-		}
-		if (temperature2 != nullptr)
-		{
-			setBinMsg_temperature2(temperature2->getValue());
-		}
-		if (fuelPercentage != nullptr)
-		{
-			setBinMsg_fuelPercent(fuelPercentage->getValue());
-		}
-		if (fuelMl != nullptr)
-		{
-			setBinMsg_fuelMl(fuelMl-> getValue());
-		}
-		if (rpm2 != nullptr)
-		{
-			setBinMsg_rpm2(rpm2->getValue());
-		}
-		if (rpm != nullptr)
-		{
-			setBinMsg_rpm(rpm->getValue());
-		}
-		if (altitude != nullptr)
-		{
-			setBinMsg_altitude(altitude->getValue());
-		}
-		if (climbrate_L != nullptr)
-		{
-			setBinMsg_climbrateL(climbrate_L->getValue());
-		}
-		if (climbrate3s != nullptr)
-		{
-			setBinMsg_climbrate3s(climbrate3s->getValue());
-		}
-		if (current != nullptr)
-		{
-			setBinMsg_current(current->getValue());
-		}
-		if (voltageMain!=nullptr)
-		{
-			setBinMsg_mainVoltage(voltageMain->getValue());
-		}
-		if (batteryCapacity!= nullptr)
-		{
-			setBinMsg_battCap(batteryCapacity->getValue());
-		}
-		if (speed!=nullptr)
-		{
-			setBinMsg_speed(speed->getValue());
-		}
+		setBinMsg_cellVotlage(1, cellVoltage->getValue());
+		setBinMsg_cellVotlage(2, cellVoltage->getValue());
+		setBinMsg_cellVotlage(3, cellVoltage->getValue());
+		setBinMsg_cellVotlage(4, cellVoltage->getValue());
+		setBinMsg_cellVotlage(5, cellVoltage->getValue());
+		setBinMsg_cellVotlage(6, cellVoltage->getValue());
+		setBinMsg_Battery1(battery1->getValue());
+		setBinMsg_Battery2(battery2->getValue());
+		setBinMsg_temperature1(temperature1->getValue());
+		setBinMsg_temperature2(temperature2->getValue());
+		setBinMsg_fuelPercent(fuelPercentage->getValue());
+		setBinMsg_fuelMl(fuelMl->getValue());
+		setBinMsg_rpm(rpm->getValue());
+		setBinMsg_altitude(altitude->getValue());
+		setBinMsg_climbrate3s(climbrate3s->getValue());
+		setBinMsg_climbrateL(climbrate_L->getValue());
+		setBinMsg_current(current->getValue());
+		setBinMsg_mainVoltage(voltageMain->getValue());
+		setBinMsg_battCap(batteryCapacity->getValue());
+		setBinMsg_speed(speed->getValue());
+		setBinMsg_minCellVoltageNumber(minVoltageCellNumber->getValue());
+		setBinMsg_rpm2(rpm2->getValue());
+		setBinMsg_pressure_in_bar(pressure->getValue());
 
-			setBinMsg_minCellVoltage(3.7);
 
-		if (minVoltageCellNumber!=nullptr)
-		{
-			setBinMsg_minCellVoltageNumber(minVoltageCellNumber->getValue());
-		}
-		if (pressure!=nullptr)
-		{
-			setBinMsg_pressure_in_bar(pressure->getValue());
-		}
+
+
+
 		
 	}
 }
@@ -483,5 +440,61 @@ int GamModule::getBinMessageSize()
 {
 	return sizeof(HOTT_GAM_MSG);
 }
+
+	void GamModule::set_cellVoltageSensor(SensorValue<float>* _cellVoltage){
+		cellVoltage = _cellVoltage;
+	};
+	void GamModule::set_battery1Sensor(SensorValue<float>* _battery1){
+		battery1 = _battery1;
+	};
+	void GamModule::set_battery2Sensor(SensorValue<float>* _battery2){
+		battery2 = _battery2;
+	};
+	void GamModule::set_temperature1Sensor(SensorValue<byte>* _temperature1){
+		temperature1 = _temperature1;
+	};
+	void GamModule::set_temperature2Sensor(SensorValue<byte>* _temperature2){
+		temperature2 = temperature2;
+	};
+	void GamModule::set_fuelPercentageSensor(SensorValue<byte>* _fuelPercentage){
+		fuelPercentage = _fuelPercentage;
+	};
+	void GamModule::set_fuelMlSensor(SensorValue<uint16_t>* _fuelML){
+		fuelMl = _fuelML;
+	};
+	void GamModule::set_rpmSensor(SensorValue<uint16_t>* _rpm){
+		rpm = _rpm;
+		
+	};
+	void GamModule::set_altitudeSensor(SensorValue<uint16_t>* _altitude){
+		altitude = _altitude;
+	};
+	void GamModule::set_climbrateLSensor(SensorValue<float>* _climbrateL){
+		climbrate_L = _climbrateL;
+	};
+	void GamModule::set_climbrate3sSensor(SensorValue<uint16_t>* _climbrate3s){
+		climbrate3s = _climbrate3s;
+	};
+	void GamModule::set_currentSensor(SensorValue<float>* _current){
+		current = _current;
+	};
+	void GamModule::set_voltageMainSensor(SensorValue<float>* _voltageMain){
+		voltageMain = _voltageMain;
+	};
+	void GamModule::set_batteryCapacitySensor(SensorValue<uint16_t>* _capacity){
+		batteryCapacity = _capacity;
+	};
+	void GamModule::set_speedSensor(SensorValue<uint16_t>* _speed){
+		speed = _speed;
+	};
+	void GamModule::set_MinVoltageCellNumberSensor(SensorValue<byte>* _cellNumber){
+		minVoltageCellNumber = _cellNumber;
+	};
+	void GamModule::set_rpm2Sensor(SensorValue<uint16_t>* _rpm2){
+		rpm2 = _rpm2;
+	};
+	void GamModule::set_pressureSensor(SensorValue<float>* _pressure){
+		pressure = _pressure;
+	};
 
 #endif
