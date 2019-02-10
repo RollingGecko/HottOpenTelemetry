@@ -8,7 +8,11 @@ HottOpenTelemetry
 #define MessageSender_h__
 
 
-#include "Arduino.h"
+#ifdef UNIT_TEST
+    #include "ArduinoFake.h"
+#else
+    #include "Arduino.h"
+#endif
 //#include <EEPROM.h>
 #include "HottModule.h"
 

@@ -4,7 +4,11 @@
 #define Page_h__
 
 
-#include "Arduino.h"
+#ifdef UNIT_TEST
+    #include "ArduinoFake.h"
+#else
+    #include "Arduino.h"
+#endif
 #include "HottModule.h"
 
 class HottModule;
@@ -31,7 +35,7 @@ protected:
 
 
 public:
-	Page::Page(char * _title, HottModule* _module);
+	Page(char * _title, HottModule* _module);
 	virtual ~Page();
 	void setPrevious(Page* _page);
 	void setNext(Page* _page);

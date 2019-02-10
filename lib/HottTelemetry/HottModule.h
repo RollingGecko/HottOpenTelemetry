@@ -3,7 +3,9 @@
 #ifndef HottModule_h__
 #define HottModule_h__
 
-#include "Arduino.h"
+#ifndef UNIT_TEST
+    #include "Arduino.h"
+
 //#include "Sensor.h"
 #include "ModuleDefines.h"
 #include "Page.h"
@@ -161,4 +163,5 @@ public:
 	//void set_pressure_in_bar(float pressure);
 };
 
+#endif //UNIT_TEST
 #endif // HottModule_h__

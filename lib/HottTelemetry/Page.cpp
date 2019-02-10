@@ -1,6 +1,6 @@
 #include "Page.h"
 
-
+#ifndef UNIT_TEST //ToDo: Make Testable
 #include "MessageSender.h"
 
 void Page::onKeyAction(byte keyId)
@@ -123,3 +123,4 @@ inline void Page::printLine(int _Line, int _centerSpaces, const char * _Title)
 }
 
 
+#endif

@@ -3,8 +3,19 @@
  Created:	31.12.2018 12:01:37
  Author:	AC
 */
-#include <Arduino.h>
+
+
+#ifndef UNIT_TEST
+
+// #ifdef UNIT_TEST
+//     #include "ArduinoFake.h"
+// #else
+#include "Arduino.h"
+// #endif
+// #ifndef UNIT_TEST
 #include <Wire.h>
+// #endif
+
 #include <SoftwareSerial.h>
 #include "HottModule.h"
 #include "MessageSender.h"
@@ -72,3 +83,7 @@ void loop() {
 	MessageSender->sendMessage();
 	
 }
+
+#endif
+
+

@@ -2,9 +2,11 @@
 HottOpenTelemetry
 */
 
-
+#ifndef UNIT_TEST
 #include "MessageSender.h"
+
 #include <avr/pgmspace.h>
+
 #include <SoftwareSerial.h>
 #include <Stream.h>
 
@@ -160,3 +162,4 @@ char * HottMessage::_hott_invert_chars(char *str, int cnt) {
 	return str;
 }
 
+#endif

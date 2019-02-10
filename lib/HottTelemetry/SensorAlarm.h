@@ -1,6 +1,8 @@
 #pragma once
 #include "Value.h"
+#ifndef UNIT_TEST
 #include "ModuleDefines.h"
+#endif
 #include "HottModule.h"
 
 class HottModule;
