@@ -5,7 +5,7 @@
 
 
 #ifdef UNIT_TEST
-    #include <stdint.h>
+    #include <Mock_Arduino.h>
 #else
     #include "Arduino.h"
 #endif

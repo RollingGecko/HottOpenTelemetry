@@ -6,7 +6,7 @@
 	// #include "Module.h"
 #else
 	// #include "HottModule_Mock.h"
-	#define HOTTMODULE_MOCKED
+	//#define HOTTMODULE_MOCKED
 	#include <stdint.h>
 	#define ALARM_OFF	0x00
 #endif

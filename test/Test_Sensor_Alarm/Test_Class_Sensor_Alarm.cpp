@@ -1,6 +1,7 @@
 
 #ifdef UNIT_TEST
 #include "SensorAlarm.h"
+#include "Mock_HottModule.h"
 #include <gtest/gtest.h>
 #include <stdint.h>
 
@@ -15,7 +16,7 @@ class SensorAlarmClassTest : public testing::Test
 public:
 	SensorAlarm<uint8_t>* minAlarm;
 	SensorAlarm<uint8_t>* maxAlarm;
-	Module* module; //ToDo Mock
+	HottModule* module; //ToDo Mock
 	SensorAlarmClassTest() {
 		minAlarm = new SensorAlarm<uint8_t>("MinAlarm", module, 0x02);
 		minAlarm = new SensorAlarm<uint8_t>("MinAlarm", module, 0x02, true);
