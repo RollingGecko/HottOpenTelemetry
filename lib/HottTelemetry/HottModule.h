@@ -7,6 +7,7 @@
     #include "Arduino.h"
 
 //#include "Sensor.h"
+#include "Module.h"
 #include "ModuleDefines.h"
 #include "Page.h"
 #include "SensorValue.h"
@@ -31,7 +32,7 @@ struct HOTT_TEXTMODE_MSG {
 // String for text mode
 #define HOTT_TEXTMODE_MSG_TEXT_LEN		168
 
-class HottModule
+class HottModule : public Module
 {
 private:
 	friend class Page;
