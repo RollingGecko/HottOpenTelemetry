@@ -1,6 +1,7 @@
 
 #ifdef UNIT_TEST
 #include "SensorAlarm.h"
+#include "Mock_HottModule.h"
 #include <gtest/gtest.h>
 #include <stdint.h>
 

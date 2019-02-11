@@ -3,10 +3,14 @@
 #ifndef HottModule_h__
 #define HottModule_h__
 
-#ifndef UNIT_TEST
+#ifdef UNIT_TEST
+	#include "Mock_Arduino.h"
+#else
     #include "Arduino.h"
+#endif //UNIT_TEST
 
 //#include "Sensor.h"
+#include "Module.h"
 #include "ModuleDefines.h"
 #include "Page.h"
 #include "SensorValue.h"
@@ -31,7 +35,7 @@ struct HOTT_TEXTMODE_MSG {
 // String for text mode
 #define HOTT_TEXTMODE_MSG_TEXT_LEN		168
 
-class HottModule
+class HottModule : public Module
 {
 private:
 	friend class Page;
@@ -158,15 +162,6 @@ public:
 	virtual void set_MinVoltageCellNumberSensor(SensorValue<byte>* _cellNumber);
 	virtual void set_rpm2Sensor(SensorValue<uint16_t>* _rpm2);
 	virtual void set_pressureSensor(SensorValue<float>* _pressure);
-
-	
-	
-
-
-
-
 	
 };
-
-#endif //UNIT_TEST
 #endif // HottModule_h__
