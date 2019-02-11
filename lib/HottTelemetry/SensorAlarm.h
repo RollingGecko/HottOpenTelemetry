@@ -24,10 +24,30 @@ private:
 
 public:
 	SensorAlarm();
+	/**
+	 * @brief Construct a new Sensor Alarm object
+	 * 
+	 * @param _name 
+	 * @param _moduleObject 
+	 * @param _alarmType: defines alarm type in RC Transmitter
+	 * @param _maxAlarm: if TRUE it is max Alarm, else it is a min Alarm (default)
+	 */
 	SensorAlarm(const char* _name,HottModule* _moduleObject ,uint8_t _alarmType = ALARM_OFF, bool _maxAlarm = false);
 	~SensorAlarm();
+	/**
+	 * @brief Toggle Alarm Tone ON/OFF
+	 * 
+	 */
 	void toggleAlarmTone();
+	/**
+	 * @brief Load Alarm from EEprom
+	 * 
+	 */
 	void loadAlarm();
+	/**
+	 * @brief Save Alarm to EEprom
+	 * 
+	 */
 	void saveAlarm();
 	bool checkAlarm(T _sensorValue);
 	bool getAlarmToneSetting();
@@ -69,6 +89,19 @@ bool SensorAlarm<T>::getAlarmToneSetting()
 {
 	return alarmTone;
 }
+
+template<class T>
+void SensorAlarm<T>::loadAlarm(){
+	//ToDo
+};
+template<class T>
+void SensorAlarm<T>::saveAlarm(){
+	//ToDo
+};
+template<class T>
+bool SensorAlarm<T>::checkAlarm(T _sensorValue){
+	//ToDo
+};
 
 
 

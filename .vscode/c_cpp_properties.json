@@ -1,0 +1,68 @@
+{
+    "!!! WARNING !!!": "PLEASE DO NOT MODIFY THIS FILE! USE https://docs.platformio.org/page/projectconf/section_env_build.html#build-flags",
+    "configurations": [
+        {
+            "name": "Win32",
+            "includePath": [
+                "C:/Users/AC/.platformio/packages/framework-arduinoavr/cores/arduino",
+                "C:/Users/AC/.platformio/packages/framework-arduinoavr/variants/eightanaloginputs",
+                "e:/HottOpenTelemetry/lib/HottTelemetry",
+                "e:/HottOpenTelemetry/lib/Test_Mocks",
+                "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                "e:/HottOpenTelemetry/.piolibdeps/_tmp_installing-muhygt-package",
+                "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976",
+                "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976/googlemock/include",
+                "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976/googlemock",
+                "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976/googletest/include",
+                "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976/googletest",
+                "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                "C:/Users/AC/.platformio/packages/tool-unity",
+                "e:/HottOpenTelemetry/include",
+                "e:/HottOpenTelemetry/src",
+                ""
+            ],
+            "browse": {
+                "limitSymbolsToIncludedHeaders": true,
+                "databaseFilename": "${workspaceRoot}/.vscode/.browse.c_cpp.db",
+                "path": [
+                    "C:/Users/AC/.platformio/packages/framework-arduinoavr/cores/arduino",
+                    "C:/Users/AC/.platformio/packages/framework-arduinoavr/variants/eightanaloginputs",
+                    "e:/HottOpenTelemetry/lib/HottTelemetry",
+                    "e:/HottOpenTelemetry/lib/Test_Mocks",
+                    "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SoftwareSerial/src",
+                    "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/Wire/src",
+                    "e:/HottOpenTelemetry/.piolibdeps/_tmp_installing-muhygt-package",
+                    "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976",
+                    "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976/googlemock/include",
+                    "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976/googlemock",
+                    "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976/googletest/include",
+                    "e:/HottOpenTelemetry/.piolibdeps/googletest_ID5976/googletest",
+                    "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/EEPROM/src",
+                    "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/HID/src",
+                    "C:/Users/AC/.platformio/packages/framework-arduinoavr/libraries/__cores__/arduino/SPI/src",
+                    "C:/Users/AC/.platformio/packages/tool-unity",
+                    "e:/HottOpenTelemetry/include",
+                    "e:/HottOpenTelemetry/src",
+                    ""
+                ]
+            },
+            "defines": [
+                "PLATFORMIO=30604",
+                "ARDUINO_AVR_NANO",
+                "F_CPU=16000000L",
+                "ARDUINO_ARCH_AVR",
+                "ARDUINO=10805",
+                "__AVR_ATmega328P__",
+                ""
+            ],
+            "intelliSenseMode": "clang-x64",
+            "cStandard": "c11",
+            "cppStandard": "c++11",
+            "compilerPath": "C:/Users/AC/.platformio/packages/toolchain-atmelavr/bin/avr-gcc.exe -mmcu=atmega328p"
+        }
+    ],
+    "version": 4
+}
