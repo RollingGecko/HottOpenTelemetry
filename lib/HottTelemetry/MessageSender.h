@@ -17,17 +17,17 @@ HottOpenTelemetry
 #include "HottModule.h"
 
 // Radio keys
-#define HOTT_KEY_RIGHT  0xE	//ENTER
-#define HOTT_KEY_DOWN   0xB	//DEC
-#define HOTT_KEY_UP     0xD	//INC
-#define HOTT_KEY_SET    0x9 //SET
-#define HOTT_KEY_LEFT   0x7	//ESC
+// #define HOTT_KEY_RIGHT  0xE	//ENTER
+// #define HOTT_KEY_DOWN   0xB	//DEC
+// #define HOTT_KEY_UP     0xD	//INC
+// #define HOTT_KEY_SET    0x9 //SET
+// #define HOTT_KEY_LEFT   0x7	//ESC
 
 // Hott protocol v4 delay
 #define HOTTV4_TX_DELAY 650
 
-#define HOTT_BINARY_MODE_REQUEST_ID		0x80
-#define HOTT_TEXT_MODE_REQUEST_ID       0x7F
+// #define HOTT_BINARY_MODE_REQUEST_ID		0x80
+// #define HOTT_TEXT_MODE_REQUEST_ID       0x7F
 //Binary Mode Requests 
 #define HOTT_TELEMETRY_GEA_SENSOR_ID    0x8E // Electric Air Module ID
 #define HOTT_TELEMETRY_GAM_SENSOR_ID    0x8D
