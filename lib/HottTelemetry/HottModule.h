@@ -10,7 +10,8 @@
 #endif //UNIT_TEST
 
 //#include "Sensor.h"
-#include "Module.h"
+#include "HottModule_Interface.h"
+// #include"HottModule.h"
 #include "ModuleDefines.h"
 #include "Page.h"
 #include "SensorValue.h"
@@ -35,7 +36,8 @@ struct HOTT_TEXTMODE_MSG {
 // String for text mode
 #define HOTT_TEXTMODE_MSG_TEXT_LEN		168
 
-class HottModule : public Module
+class HottModule : public HottModule_Interface
+// class HottModule : public Module
 {
 private:
 	friend class Page;
@@ -59,11 +61,11 @@ public:
 	virtual void createBinMessage() = 0;
 	virtual void createTxtMessage(byte keyId) = 0;
 	virtual int getBinMessageSize() = 0;
-	uint8_t* getBinMessage();
-	uint8_t* getTxtMessage();
-	int getTxtMessageSize();
-	void setCurrentPage(Page* _page);
-	void setDummyMessage(bool onOff);
+	virtual uint8_t* getBinMessage();
+	virtual uint8_t* getTxtMessage();
+	virtual int getTxtMessageSize();
+	virtual void setCurrentPage(Page* _page);
+	virtual void setDummyMessage(bool onOff);
 };
 
 //GAM Module

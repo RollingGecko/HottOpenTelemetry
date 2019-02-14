@@ -3,6 +3,7 @@
 #ifndef ModuleDefines_h__
 #define ModuleDefines_h__
 
+
 #define HOTT_TELEMETRY_GEA_SENSOR_ID    0x8E // Electric Air Module ID
 #define HOTT_BINARY_MODE_REQUEST_ID		0x80
 #define HOTT_TEXT_MODE_REQUEST_ID       0x7f
@@ -82,8 +83,8 @@ struct HOTT_GAM_MSG {
 										  //#14 MSB 
 	uint16_t  Battery2;                   //#15 LSB battery 2 voltage LSB value. 0.1V steps. 50 = 5.5V only pos. voltages
 										  //#16 MSB
-	byte temperature1;                    //#17 Temperature 1. Offset of 20. a value of 20 = 0°C
-	byte temperature2;                    //#18 Temperature 2. Offset of 20. a value of 20 = 0°C
+	byte temperature1;                    //#17 Temperature 1. Offset of 20. a value of 20 = 0ï¿½C
+	byte temperature2;                    //#18 Temperature 2. Offset of 20. a value of 20 = 0ï¿½C
 	byte fuel_percent;                    //#19 Fuel capacity in %. Values 0--100
 										  //graphical display ranges: 0-100% with new firmwares of the radios MX12/MX20/...
 	uint16_t fuel_ml;                     //#20 LSB Fuel in ml scale. Full = 65535!
