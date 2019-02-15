@@ -13,6 +13,8 @@ class HottModule_Interface : public Module
 {
 	
 public:
+	// HottModule_Interface();
+	// virtual ~HottModule_Interface();
 	
 	virtual void init_BinMsg() = 0;
 	virtual void initTxtMsg() = 0;

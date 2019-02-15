@@ -1,6 +1,7 @@
 #pragma once
-#include "Value.h"
-#include "Module.h"
+
+// #include "Module.h"
+#include"HottModule_Interface.h"
 #ifndef UNIT_TEST
 	#include "ModuleDefines.h"
 	// #include "Module.h"
@@ -10,9 +11,7 @@
 	#include <stdint.h>
 	#define ALARM_OFF	0x00
 #endif
-
-
-class Module;
+#include "Value.h"
 
 template <class T>
 class SensorAlarm : public Value<T> {
@@ -21,7 +20,7 @@ private:
 	bool maxAlarm; //true, else it is a minAlarm
 	uint8_t alarmType;
 	void triggerAlarm();
-	Module* moduleObject;
+	HottModule_Interface* moduleObject;
 
 public:
 	SensorAlarm();
@@ -33,7 +32,7 @@ public:
 	 * @param _alarmType: defines alarm type in RC Transmitter
 	 * @param _maxAlarm: if TRUE it is max Alarm, else it is a min Alarm (default)
 	 */
-	SensorAlarm(const char* _name,Module* _moduleObject ,uint8_t _alarmType = ALARM_OFF, bool _maxAlarm = false);
+	SensorAlarm(const char* _name,HottModule_Interface* _moduleObject ,uint8_t _alarmType = ALARM_OFF, bool _maxAlarm = false);
 	~SensorAlarm();
 	/**
 	 * @brief Toggle Alarm Tone ON/OFF
@@ -57,7 +56,7 @@ public:
 template <class T>
 void SensorAlarm<T>::triggerAlarm()
 {
-	//moduleObject->set_Alert(alarmType); //ToDo Build error
+	moduleObject->set_Alert(alarmType); //ToDo Build error
 }
 
 template <class T>
@@ -67,7 +66,7 @@ SensorAlarm<T>::SensorAlarm()
 }
 
 template <class T>
-SensorAlarm<T>::SensorAlarm(const char* _name,Module* _moduleObject,uint8_t _alarmType, bool _maxAlarm):Value<T>(_name)
+SensorAlarm<T>::SensorAlarm(const char* _name,HottModule_Interface* _moduleObject,uint8_t _alarmType, bool _maxAlarm):Value<T>(_name)
 {
 	alarmType = _alarmType;
 	maxAlarm = _maxAlarm;

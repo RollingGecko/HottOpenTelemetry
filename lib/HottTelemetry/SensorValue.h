@@ -1,8 +1,14 @@
 #pragma once
 #include "Value.h"
+#include "HottModule_Interface.h"
 #include "SensorAlarm.h"
 #include "ModuleDefines.h"
-#include "Module.h"
+//#include "Module.h"
+
+template <class T>
+class SensorAlarm;
+
+class HottModule_Interface;
 
 template <class T>
 class SensorValue : public Value<T> {
@@ -10,9 +16,9 @@ private:
 
 public:
 	SensorValue();
-	SensorValue(const char* _name, Module* _moduleObject, byte _alarmTypeMin = ALARM_OFF, byte _alarmTypeMax = ALARM_OFF);
+	SensorValue(const char* _name, HottModule_Interface* _moduleObject, byte _alarmTypeMin = ALARM_OFF, byte _alarmTypeMax = ALARM_OFF);
 	~SensorValue();
-		SensorAlarm<T>* minAlarm;
+	SensorAlarm<T>* minAlarm;
 	SensorAlarm<T>* maxAlarm;
 
 };
@@ -24,7 +30,7 @@ public:
 //}
 
 template <class T>
-SensorValue<T>::SensorValue(const char* _name, Module* _moduleObject, byte _alarmTypeMin, byte _alarmTypeMax):Value<T>(_name)
+SensorValue<T>::SensorValue(const char* _name, HottModule_Interface* _moduleObject, byte _alarmTypeMin, byte _alarmTypeMax):Value<T>(_name)
 {
 	/*const char* namePostfixMin = "MinAl";
 	const char* namePostfixMax = "MaxAl";

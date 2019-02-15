@@ -13,11 +13,9 @@
 #include "HottModule_Interface.h"
 // #include"HottModule.h"
 #include "ModuleDefines.h"
-#include "Page.h"
 #include "SensorValue.h"
 #include "SensorAlarm.h"
-
-class Page;
+#include "Page.h"
 
 struct HOTT_TEXTMODE_MSG {
 	byte start_byte;			//#01 Starting constant value == 0x7b
@@ -37,7 +35,6 @@ struct HOTT_TEXTMODE_MSG {
 #define HOTT_TEXTMODE_MSG_TEXT_LEN		168
 
 class HottModule : public HottModule_Interface
-// class HottModule : public Module
 {
 private:
 	friend class Page;
