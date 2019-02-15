@@ -25,6 +25,7 @@ MOCK_METHOD0(getTxtMessage,uint8_t*());
 MOCK_METHOD0(getTxtMessageSize,int());
 MOCK_METHOD1(setCurrentPage, void(Page* _page));
 MOCK_METHOD1(setDummyMessage, void(bool onOff));
+MOCK_METHOD1(set_Alert,void(uint8_t alarm));
 
 
 };

@@ -24,6 +24,7 @@ public:
 	virtual int getTxtMessageSize() = 0;
 	virtual void setCurrentPage(Page* _page) = 0;
 	virtual void setDummyMessage(bool onOff) = 0;
+	virtual void set_Alert(uint8_t alarm)=0;
 };
 
 #endif

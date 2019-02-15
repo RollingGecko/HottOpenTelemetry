@@ -57,7 +57,7 @@ public:
 template <class T>
 void SensorAlarm<T>::triggerAlarm()
 {
-//	Module->set_Alert(alarmType); //ToDo Build error
+	//moduleObject->set_Alert(alarmType); //ToDo Build error
 }
 
 template <class T>
@@ -67,7 +67,7 @@ SensorAlarm<T>::SensorAlarm()
 }
 
 template <class T>
-SensorAlarm<T>::SensorAlarm(const char* _name,Module* _moduleObject ,uint8_t _alarmType, bool _maxAlarm):Value<T>(_name)
+SensorAlarm<T>::SensorAlarm(const char* _name,Module* _moduleObject,uint8_t _alarmType, bool _maxAlarm):Value<T>(_name)
 {
 	alarmType = _alarmType;
 	maxAlarm = _maxAlarm;

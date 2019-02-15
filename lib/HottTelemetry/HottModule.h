@@ -101,7 +101,7 @@ private:
 
 protected:
    	  
-	void set_Alert(byte alarm);
+	
 	void set_alarminvers1(byte alarm);
 	void set_alarminvers2(byte alarm);
 	void setBinMsg_cellVotlage(uint8_t cell, float voltage);
@@ -164,6 +164,7 @@ public:
 	virtual void set_MinVoltageCellNumberSensor(SensorValue<byte>* _cellNumber);
 	virtual void set_rpm2Sensor(SensorValue<uint16_t>* _rpm2);
 	virtual void set_pressureSensor(SensorValue<float>* _pressure);
+	void set_Alert(uint8_t alarm);
 	
 };
 #endif // HottModule_h__
