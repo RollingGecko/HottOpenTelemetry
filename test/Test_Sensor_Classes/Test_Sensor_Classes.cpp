@@ -1,10 +1,13 @@
 
 #ifdef UNIT_TEST
+#include <gtest/gtest.h>
+#include <gmock/gmock.h>
 #include "Mock_HottModule.h"
 #include "Value.h"
 #include "SensorAlarm.h"
-#include <gtest/gtest.h>
 #include <stdint.h>
+
+using ::testing::_;
 
 #define GTEST
 
@@ -56,7 +59,7 @@ public:
 	Mock_HottModule* module;
 	SensorAlarmClassTest() {
 		minAlarm = new SensorAlarm<uint8_t>("MinAlarm", module, 0x02);
-		minAlarm = new SensorAlarm<uint8_t>("MinAlarm", module, 0x02, true);
+		maxAlarm = new SensorAlarm<uint8_t>("MaxAlarm", module, 0x02, true);
 	}
 	~SensorAlarmClassTest() {}
 
@@ -70,10 +73,19 @@ TEST_F(SensorAlarmClassTest, toggleAlarmTone) {
 	EXPECT_EQ(previousSetting, minAlarm->getAlarmToneSetting());
 }
 
+TEST_F(SensorAlarmClassTest, triggerAlarmOnce){
+	EXPECT_CALL(*module, set_Alert(_))
+		.Times(1);
+	EXPECT_TRUE(minAlarm->triggerAlarm());
+}
+
+
 
 //Main Test runner
 int main(int argc, char **argv) {
-	::testing::InitGoogleTest(&argc, argv);
+	 ::testing::GTEST_FLAG(throw_on_failure) = true;
+	::testing::InitGoogleMock(&argc, argv);
+	//  ::testing::InitGoogleTest(&argc, argv);
 	return RUN_ALL_TESTS();
 }
 
