@@ -46,7 +46,7 @@ protected:
 	struct HOTT_TEXTMODE_MSG  *hott_txt_msg = (struct HOTT_TEXTMODE_MSG *)serialTxtMessage;
 	bool dummyMessage = false;
 	void cleanTxtMessage();
-	virtual void set_Alert(byte alarm) = 0;
+	virtual void set_Alert(uint8_t alarm) = 0;
 
 	 
 	

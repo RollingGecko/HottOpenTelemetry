@@ -19,11 +19,12 @@ private:
 	bool alarmTone;
 	bool maxAlarm; //true, else it is a minAlarm
 	uint8_t alarmType;
-	void triggerAlarm();
+	
 	HottModule_Interface* moduleObject;
 
 public:
-	SensorAlarm();
+	bool triggerAlarm();
+	//SensorAlarm();
 	/**
 	 * @brief Construct a new Sensor Alarm object
 	 * 
@@ -54,16 +55,17 @@ public:
 };
 
 template <class T>
-void SensorAlarm<T>::triggerAlarm()
+bool SensorAlarm<T>::triggerAlarm()
 {
-	moduleObject->set_Alert(alarmType); //ToDo Build error
+	//moduleObject->set_Alert(alarmType);
+	return true;
 }
 
-template <class T>
-SensorAlarm<T>::SensorAlarm()
-{
+// template <class T>
+// SensorAlarm<T>::SensorAlarm()
+// {
 
-}
+// }
 
 template <class T>
 SensorAlarm<T>::SensorAlarm(const char* _name,HottModule_Interface* _moduleObject,uint8_t _alarmType, bool _maxAlarm):Value<T>(_name)
