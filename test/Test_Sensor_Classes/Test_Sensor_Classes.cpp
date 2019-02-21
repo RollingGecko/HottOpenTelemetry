@@ -78,7 +78,18 @@ TEST_F(SensorAlarmClassTest, triggerAlarmOnce){
 	minAlarm->triggerAlarm();
 }
 
-
+TEST_F(SensorAlarmClassTest, checkMinValue) {
+	minAlarm->setValue(4);
+	//Expect that method returns true if checkAlarm is positiv
+	// is < then
+	EXPECT_CALL(module, set_Alert(0x02));
+	EXPECT_EQ(true, minAlarm->checkAlarm(3)); 
+	//is = then
+	EXPECT_CALL(module, set_Alert(0x02));
+	EXPECT_EQ(true, minAlarm->checkAlarm(4));
+	//is > then
+	EXPECT_EQ(false, minAlarm->checkAlarm(5));
+}
 
 //Main Test runner
 int main(int argc, char **argv) {

@@ -102,7 +102,16 @@ void SensorAlarm<T>::saveAlarm(){
 };
 template<class T>
 bool SensorAlarm<T>::checkAlarm(T _sensorValue){
-	return true;//ToDo
+	if (_sensorValue <= getValue())
+	{
+		triggerAlarm();
+		return true;
+	}
+	else
+	{
+		return false;
+	}
+	
 };
 
 
