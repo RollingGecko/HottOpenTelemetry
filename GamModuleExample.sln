@@ -1,0 +1,50 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.168
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GamModuleExample", "src\GamModuleExample\GamModuleExample.vcxproj", "{C5F80730-F44F-4478-BDAE-6634EFC2CA88}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "HottTelemetry", "lib\HottTelemetry\HottTelemetry.vcxitems", "{70E04488-7B71-4AA0-92B2-6880DC30EC49}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_Mocks", "lib\Test_Mocks\Test_Mocks.vcxitems", "{DB25110A-66D2-4AF0-B016-A5C5C34BA472}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Test_Sensor_Classes", "test\Test_Sensor_Classes\Test_Sensor_Classes.vcxproj", "{E259B3C6-C94D-4463-8321-77E9C15BE0FD}"
+EndProject
+Global
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		lib\HottTelemetry\HottTelemetry.vcxitems*{70e04488-7b71-4aa0-92b2-6880dc30ec49}*SharedItemsImports = 9
+		lib\HottTelemetry\HottTelemetry.vcxitems*{c5f80730-f44f-4478-bdae-6634efc2ca88}*SharedItemsImports = 4
+		lib\Test_Mocks\Test_Mocks.vcxitems*{db25110a-66d2-4af0-b016-a5c5c34ba472}*SharedItemsImports = 9
+		lib\HottTelemetry\HottTelemetry.vcxitems*{e259b3c6-c94d-4463-8321-77e9c15be0fd}*SharedItemsImports = 4
+		lib\Test_Mocks\Test_Mocks.vcxitems*{e259b3c6-c94d-4463-8321-77e9c15be0fd}*SharedItemsImports = 4
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x64.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.ActiveCfg = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Debug|x86.Build.0 = Debug|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x64.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.ActiveCfg = Release|Win32
+		{C5F80730-F44F-4478-BDAE-6634EFC2CA88}.Release|x86.Build.0 = Release|Win32
+		{E259B3C6-C94D-4463-8321-77E9C15BE0FD}.Debug|x64.ActiveCfg = Debug|x64
+		{E259B3C6-C94D-4463-8321-77E9C15BE0FD}.Debug|x64.Build.0 = Debug|x64
+		{E259B3C6-C94D-4463-8321-77E9C15BE0FD}.Debug|x86.ActiveCfg = Debug|Win32
+		{E259B3C6-C94D-4463-8321-77E9C15BE0FD}.Debug|x86.Build.0 = Debug|Win32
+		{E259B3C6-C94D-4463-8321-77E9C15BE0FD}.Release|x64.ActiveCfg = Release|x64
+		{E259B3C6-C94D-4463-8321-77E9C15BE0FD}.Release|x64.Build.0 = Release|x64
+		{E259B3C6-C94D-4463-8321-77E9C15BE0FD}.Release|x86.ActiveCfg = Release|Win32
+		{E259B3C6-C94D-4463-8321-77E9C15BE0FD}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {41724819-E3B6-4129-B205-E2FB7ABFC792}
+	EndGlobalSection
+EndGlobal

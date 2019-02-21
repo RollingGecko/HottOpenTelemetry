@@ -12,8 +12,8 @@
 class Mock_HottModule : public HottModule_Interface{
 
 public:
-Mock_HottModule();
-~Mock_HottModule();
+//Mock_HottModule();
+//~Mock_HottModule();
 
 MOCK_METHOD0(init_BinMsg, void());
 MOCK_METHOD0(initTxtMsg,void());

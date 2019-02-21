@@ -57,7 +57,7 @@ public:
 template <class T>
 bool SensorAlarm<T>::triggerAlarm()
 {
-	//moduleObject->set_Alert(alarmType);
+	moduleObject->set_Alert(alarmType);
 	return true;
 }
 

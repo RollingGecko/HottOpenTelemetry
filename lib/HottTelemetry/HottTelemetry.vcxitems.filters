@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Text Include="$(MSBuildThisFileDirectory)readme.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="$(MSBuildThisFileDirectory)HottModule.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)MessageSender.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)Page.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="$(MSBuildThisFileDirectory)HottModule.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)HottModule_Interface.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)MessageSender.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Module.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)ModuleDefines.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Page.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SensorAlarm.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)SensorValue.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)Value.h" />
+  </ItemGroup>
+</Project>
