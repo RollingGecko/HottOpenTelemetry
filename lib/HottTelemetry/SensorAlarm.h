@@ -102,14 +102,29 @@ void SensorAlarm<T>::saveAlarm(){
 };
 template<class T>
 bool SensorAlarm<T>::checkAlarm(T _sensorValue){
-	if (_sensorValue <= getValue())
+	if (maxAlarm)
 	{
-		triggerAlarm();
-		return true;
-	}
+		if (_sensorValue >=getValue())
+		{
+			triggerAlarm();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	} 
 	else
 	{
-		return false;
+		if (_sensorValue <= getValue())
+		{
+			triggerAlarm();
+			return true;
+		}
+		else
+		{
+			return false;
+		}
 	}
 	
 };
