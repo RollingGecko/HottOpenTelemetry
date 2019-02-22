@@ -132,7 +132,7 @@ TEST_F(SensorAlarmClassTest_uint8_t, checkMinValue_atBoundary) {
 }
 
 TEST_F(SensorAlarmClassTest_uint8_t, checkMaxValue_atBoundary) {
-	maxAlarm->setValue(2555);
+	maxAlarm->setValue(255);
 	//Expect that method returns true if checkAlarm is positive
 	// is > then
 	EXPECT_CALL(module, set_Alert(0x01));
